@@ -19,3 +19,13 @@ def array_diff(a, b):
     # b_set = set(b)
 
     # return [item for item in a if item not in b_set]
+
+"""
+Source: https://stackoverflow.com/questions/8929284/what-makes-sets-faster-than-lists  
+
+Sets are implemented using hash tables. Whenever you add an object to a set, the position within the memory of the set object is determined using the hash of the object to be added. 
+When testing for membership, all that needs to be done is basically to look if the object is at the position determined by its hash, so the speed of this operation does not depend on the size of the set. 
+For lists, in contrast, the whole list needs to be searched, which will become slower as the list grows.
+This is also the reason that sets do not preserve the order of the objects you add.
+Note that sets aren't faster than lists in general -- membership test is faster for sets, and so is removing an element. As long as you don't need these operations, lists are often faster.
+"""

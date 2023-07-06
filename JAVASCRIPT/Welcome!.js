@@ -53,4 +53,7 @@ function greet(language) {
     return database[language];
   else
     return 'Welcome';
+
+  // Alternative
+  // return database[language] || langs['english'];
 }

@@ -30,3 +30,7 @@ def to_camel_case(text):
 #   return words[0] + ''.join([word.capitalize() for word in words[1:])
 # else
 #   return ''
+
+# Alternative
+# return text[:1] + text.title()[1:].replace('_', '').replace('-', '')
+# Slicing an empty list will return the empty list itself

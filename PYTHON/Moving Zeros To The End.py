@@ -15,3 +15,7 @@ def move_zeros(lst):
     
     # print(lst)
     return lst
+
+# ALTERNATIVE USING LIST COMPREHENSION
+# l = [i for i in arr if i != 0]       
+# return l + [0] * (len(arr) - len(l))

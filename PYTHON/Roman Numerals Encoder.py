@@ -20,3 +20,33 @@ Remember that there can't be more than 3 identical symbols in a row.
 
 More about roman numerals - http://en.wikipedia.org/wiki/Roman_numerals
 """
+
+def solution(n):
+    roman_numerals = {
+        1000:'M',
+        900: 'CM',
+        500: 'D',
+        400: 'CD',
+        100: 'C',
+        90: 'XC',
+        50: 'L',
+        40: 'XL',
+        10: 'X',
+        9: 'IX',
+        5: 'V',
+        4: 'IV',
+        1: 'I'
+    }
+    
+    roman_string = ''
+    
+    for key in roman_numerals.keys():
+        # print(key)
+        
+        while n >= key:
+            roman_string += roman_numerals[key]
+            n -= key
+        
+    # print(roman_string)
+    
+    return roman_string

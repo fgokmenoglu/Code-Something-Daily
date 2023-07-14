@@ -26,3 +26,6 @@ def cakes(recipe, available):
     # print([available[key] // recipe[key] for key in available.keys() if key in recipe.keys()])
     return min([available[item] // recipe[item] for item in items_available if item in items_in_recipe])
   
+# ALTERNATIVE USING GET METHOD OF DICTIONARY
+# def cakes(recipe, available):
+#	 return min(available.get(item, 0) // recipe[item] for item in recipe)

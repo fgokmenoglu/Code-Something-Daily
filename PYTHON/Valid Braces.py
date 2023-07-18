@@ -23,7 +23,7 @@ def valid_braces(string):
     
     return string == ''
 
-# ALTERNATIVE USING STACK
+# ALTERNATIVE USING LIST AS A STACK
 # def validBraces(string):
 #     braces = {"(": ")", "[": "]", "{": "}"}
 #     stack = []

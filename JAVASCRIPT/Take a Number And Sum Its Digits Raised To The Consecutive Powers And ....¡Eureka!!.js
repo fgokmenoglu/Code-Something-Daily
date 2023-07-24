@@ -15,3 +15,21 @@ If there are no numbers of this kind in the range [a,b] the function should outp
 
 90, 100 --> []
 */
+function sumDigPow(a, b) {
+  let digits = [];
+  let temp = 0;
+  let result = [];
+  
+  for (let i = a; i <= b; i++) {
+    digits = String(i).split('').map(function (str) {return Number(str);});
+    temp = 0;
+    
+    for (let j = 1; j <= digits.length; j++)
+      temp += (digits[j - 1] ** j)
+    
+    if (temp == i)
+      result.push(temp);
+  }
+  
+  return result;
+}

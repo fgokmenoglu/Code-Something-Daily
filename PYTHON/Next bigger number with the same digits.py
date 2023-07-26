@@ -15,30 +15,21 @@ import itertools
 
 def next_bigger(n):
     possible_numbers = set()
-    
-    digits = [int(i) for i in list(str(n))]
+    digits = list(str(n))
     # print(digits)
     
-    for i in range(1, len(digits) + 1):
-        combinations = list(itertools.permutations(digits, i))
-        # print(combinations)
-        
-        for j in range(len(combinations)):
-            temp = 0
-            
-            for k in range(len(combinations[j])):     
-                temp += combinations[j][k] * (10 ** k)
-                
-            possible_numbers.add(temp)
+    permutations = list(itertools.permutations(digits, len(digits)))
+    # print(permutations)
     
+    for permutation in permutations:
+        possible_numbers.add(int(''.join(permutation)))    
+        
     possible_numbers = list(possible_numbers)
     possible_numbers.sort()
-    # print(possible_numbers)
-    
+    # print(possible_numbers)    
+
     for number in possible_numbers:
-        # print(number)
         index = possible_numbers.index(n)
-        # print(index)
         
         if index == (len(possible_numbers) - 1):
             return (-1,)[0]

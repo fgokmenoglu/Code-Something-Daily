@@ -19,3 +19,4 @@ function divCon(x){
 
 // ALTERNATIVE USING REDUCE
 //  return x.reduce((acc, cur) => typeof cur === 'number' ? acc + cur : acc - Number(cur), 0)
+//  REDUCE METHOD SYNTAX: array.reduce(function(total, currentValue, currentIndex, arr), initialValue)

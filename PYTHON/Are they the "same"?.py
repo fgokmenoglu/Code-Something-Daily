@@ -28,7 +28,13 @@ If a or b are nil (or null or None, depending on the language), the problem does
 Note for C
 The two arrays have the same size (> 0) given as parameter in function comp.
 """
-def comp(array1, array2):
+def comp(array1, array2):    
+    # print(f"array1: {array1}")
+    # print(f"array2: {array2}")
+    
+    if array1 == [] and array2 == []:
+        return True
+    
     if not array1 or not array2:
         return False
     
@@ -37,3 +43,4 @@ def comp(array1, array2):
             return False
         
     return True
+	

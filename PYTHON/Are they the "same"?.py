@@ -28,3 +28,12 @@ If a or b are nil (or null or None, depending on the language), the problem does
 Note for C
 The two arrays have the same size (> 0) given as parameter in function comp.
 """
+def comp(array1, array2):
+    if not array1 or not array2:
+        return False
+    
+    for number in array1:
+        if not (array1.count(number) == array2.count(number ** 2)):
+            return False
+        
+    return True

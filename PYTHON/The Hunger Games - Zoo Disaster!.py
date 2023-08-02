@@ -114,7 +114,7 @@ def who_eats_who(zoo):
                     continue
         i += 1
         
-    result = expected + zoo
+    result = expected + [",".join(zoo)]
     print(result)
     
     return result

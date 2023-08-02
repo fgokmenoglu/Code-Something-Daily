@@ -74,4 +74,20 @@ Output
 
 ["fox,bug,chicken,grass,sheep", "chicken eats bug", "fox eats chicken", "sheep eats grass", "fox eats sheep", "fox"]
 """
+zoo_food_pyramid = {
+    'antelope' : ['grass'],
+    'big-fish' : ['little-fish'],  
+    'bug' : ['leaves'],
+    'bear' : ['big-fish', 'bug', 'chicken', 'cow', 'leaves', 'sheep'], 
+    'chicken' : ['bug'],
+    'cow' : ['grass'],
+    'fox' : ['chicken', 'sheep'],
+    'giraffe' : ['leaves'],
+    'lion' : ['antelope', 'cow'],
+    'panda' : ['leaves'],
+    'sheep' : ['grass'],
+}
 
+def who_eats_who(zoo):
+    # Your code here
+    return [zoo, zoo]

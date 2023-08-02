@@ -94,16 +94,26 @@ def who_eats_who(zoo):
     # print(expected)
     zoo = zoo.split(',')
     # print(zoo)
+    i = 0
     
-    for i in range(len(zoo) - 1):
-        if zoo[i] in food_pyramid:
-            if i >= 1 and zoo[i - 1] in food_pyramid[zoo[i]]:
-                expected.append(f"{zoo[i]} eats {zoo[i - 1]}")
-                zoo.remove(zoo[i - 1])      
-            elif zoo[i + 1] in food_pyramid[zoo[i]]:
-                expected.append(f"{zoo[i]} eats {zoo[i + 1]}")
-                zoo.remove(zoo[i + 1])
-    
+    while i < len(zoo):
+        edibles = food_pyramid.get(zoo[i], [])
+        
+        if edibles:
+            if i >= 1:
+                if zoo[i - 1] in edibles:
+                    expected.append(f"{zoo[i]} eats {zoo[i - 1]}")
+                    zoo.remove(zoo[i - 1])
+                    i = 0
+                    continue
+            elif i < (len(zoo) - 1):
+                if zoo[i + 1] in edibles:
+                    expected.append(f"{zoo[i]} eats {zoo[i + 1]}")
+                    zoo.remove(zoo[i + 1])
+                    i = 0
+                    continue
+        i += 1
+        
     result = expected + zoo
     print(result)
     

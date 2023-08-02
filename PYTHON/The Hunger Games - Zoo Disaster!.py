@@ -74,6 +74,8 @@ Output
 
 ["fox,bug,chicken,grass,sheep", "chicken eats bug", "fox eats chicken", "sheep eats grass", "fox eats sheep", "fox"]
 """
+# from collections import OrderedDict
+
 food_pyramid = {
     'antelope' : ['grass'],
     'big-fish' : ['little-fish'],  
@@ -90,31 +92,24 @@ food_pyramid = {
 
 def who_eats_who(zoo):
     expected = []
-    expected.append(zoo)
-    # print(expected)
-    zoo = zoo.split(',')
-    # print(zoo)
+    animals = zoo.split(',')
+    # print(animals)
     i = 0
     
-    while i < len(zoo):
-        edibles = food_pyramid.get(zoo[i], [])
-        
-        if edibles:
-            if i >= 1:
-                if zoo[i - 1] in edibles:
-                    expected.append(f"{zoo[i]} eats {zoo[i - 1]}")
-                    zoo.remove(zoo[i - 1])
-                    i = 0
-                    continue
-            elif i < (len(zoo) - 1):
-                if zoo[i + 1] in edibles:
-                    expected.append(f"{zoo[i]} eats {zoo[i + 1]}")
-                    zoo.remove(zoo[i + 1])
-                    i = 0
-                    continue
-        i += 1
-        
-    result = expected + [",".join(zoo)]
-    print(result)
+    while i < len(animals):
+        if i > 0 and animals[i - 1] in food_pyramid.get(animals[i], []):
+                expected.append(f"{animals[i]} eats {animals[i - 1]}")
+                animals.pop(i - 1)
+                i = 0
+        elif i < len(animals) - 1 and animals[i + 1] in food_pyramid.get(animals[i], []):
+                expected.append(f"{animals[i]} eats {animals[i + 1]}")
+                animals.pop(i + 1)
+                i = 0
+        else:
+            i += 1
+    
+    # expected = list(OrderedDict.fromkeys(expected))
+    result = [zoo] + expected + [",".join(animals)]
+    # print(result)
     
     return result

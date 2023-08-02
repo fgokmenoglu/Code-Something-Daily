@@ -74,7 +74,7 @@ Output
 
 ["fox,bug,chicken,grass,sheep", "chicken eats bug", "fox eats chicken", "sheep eats grass", "fox eats sheep", "fox"]
 """
-zoo_food_pyramid = {
+food_pyramid = {
     'antelope' : ['grass'],
     'big-fish' : ['little-fish'],  
     'bug' : ['leaves'],
@@ -89,5 +89,22 @@ zoo_food_pyramid = {
 }
 
 def who_eats_who(zoo):
-    # Your code here
-    return [zoo, zoo]
+    expected = []
+    expected.append(zoo)
+    # print(expected)
+    zoo = zoo.split(',')
+    # print(zoo)
+    
+    for i in range(len(zoo) - 1):
+        if zoo[i] in food_pyramid:
+            if i >= 1 and zoo[i - 1] in food_pyramid[zoo[i]]:
+                expected.append(f"{zoo[i]} eats {zoo[i - 1]}")
+                zoo.remove(zoo[i - 1])      
+            elif zoo[i + 1] in food_pyramid[zoo[i]]:
+                expected.append(f"{zoo[i]} eats {zoo[i + 1]}")
+                zoo.remove(zoo[i + 1])
+    
+    result = expected + zoo
+    print(result)
+    
+    return result

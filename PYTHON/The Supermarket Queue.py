@@ -28,3 +28,12 @@ The order of the queue NEVER changes, and
 The front person in the queue (i.e. the first element in the array/list) proceeds to a till as soon as it becomes free.
 N.B. You should assume that all the test input will be valid, as specified above.
 """
+def queue_time(customers, n):
+    if n == 1 or not customers:
+        return sum(customers)
+    else:
+        if n > max(customers):
+            return max(customers)
+        else:
+            pass
+    

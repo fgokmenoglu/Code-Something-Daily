@@ -29,11 +29,12 @@ The front person in the queue (i.e. the first element in the array/list) proceed
 N.B. You should assume that all the test input will be valid, as specified above.
 """
 def queue_time(customers, n):
-    if n == 1 or not customers:
-        return sum(customers)
-    else:
-        if n > max(customers):
-            return max(customers)
-        else:
-            pass
+    tills = [0] * n
+    # print(tills)
     
+    for i in customers:
+        tills[tills.index(min(tills))] += i
+        
+    # print(tills)
+        
+    return max(tills)

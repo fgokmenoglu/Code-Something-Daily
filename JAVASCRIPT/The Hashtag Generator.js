@@ -46,3 +46,8 @@ function generateHashtag (str) {
   return hashtag.length == 1 || hashtag.length > 140 ? false : hashtag;
 }
 */
+
+/*
+A string representing the character (exactly one UTF-16 code unit) at the specified index. 
+If index is out of the range of 0 – str.length - 1, charAt() returns an empty string.
+*/

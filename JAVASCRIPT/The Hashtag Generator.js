@@ -13,3 +13,36 @@ Examples
 "    Hello     World   "                  =>  "#HelloWorld"
 ""                                        =>  false
 */
+function generateHashtag (str) {
+  // str = str.replace(/\s/g,'');
+  
+  if (str.length == 0)
+    return false;
+  
+  str = str.split(' ');
+  // console.log(str);
+  
+  for (var i = 0; i < str.length; i++) {
+    if (str[i].length > 0)
+      str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+  }
+  
+  str = str.join('');
+  
+  if (str.length > 139 || str.length == 0)
+    return false;
+  
+  return '#' + str;
+}
+
+// ALTERNATIVE USING REDUCE
+/*
+function generateHashtag (str) {
+
+  var hashtag = str.split(' ').reduce(function(tag, word) {
+    return tag + word.charAt(0).toUpperCase() + word.substring(1);
+  }, '#');
+  
+  return hashtag.length == 1 || hashtag.length > 140 ? false : hashtag;
+}
+*/

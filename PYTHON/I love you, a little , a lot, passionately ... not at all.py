@@ -29,3 +29,9 @@ def how_much_i_love_you(nb_petals):
             return "passionately"
         case 5:
             return "madly"
+
+"""
+The match statement is initialized with the match keyword creating a block and taking a parameter (here the name is also a parameter) and then 
+steps down to the various cases using the case keyword and the pattern, for the pattern to match the parameter. 
+The '-' is the wildcard character which is run when nothing is matched.
+"""

@@ -61,3 +61,14 @@ Input => Output
 'XOOOXXO' => 16
 'XOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXOXO' => 63245985
 """
+from functools import lru_cache
+
+def total_possible_amount(s):
+    @lru_cache(None)
+    def f(pos, head):
+        tail = {'X':'O','O':'X'}[head]
+        return pos == len(s) or f(pos + 1, head) + (s[pos] != head and f(pos, tail))
+    
+    return f(1, s[0]) - 1 if s else 0
+
+# lru_cache() is one such function in functools module which helps in reducing the execution time of the function by using memoization technique.

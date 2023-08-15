@@ -17,3 +17,27 @@ The data is given in an array as such:
 
 Note: In the C and NASM languages you are given the third parameter which is the number of segment blocks.
 """
+def data_reverse(data):
+    temp = []
+    result = []
+    
+    for i in range(0, len(data), 8):
+        temp.append(data[i:i + 8])
+        
+    temp.reverse()
+    
+    for i in range(len(temp)):
+        result.extend(temp[i])
+        
+    return result
+
+# ALTERNATIVE USING FEWER LIST OPERATIONS
+"""
+def data_reverse(data):
+  res = []
+  
+  for i in range(len(data)-8, -1, -8):
+    res.extend(data[i:i+8])
+  
+  return res
+"""

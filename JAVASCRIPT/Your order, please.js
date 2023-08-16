@@ -10,3 +10,19 @@ Examples
 "4of Fo1r pe6ople g3ood th5e the2"  -->  "Fo1r the2 g3ood 4of th5e pe6ople"
 ""  -->  ""
 */
+function order(words){
+  var word = words.split(' ');
+  console.log(word);
+  
+  const r = /\d+/g;
+  var matches = words.match(r);
+  console.log(matches);
+  
+  var result = [];
+  
+  for (var i = 0; i < word.length; i++)
+    result.push(word[parseInt(matches[i]) - 1]);
+    
+  console.log(result);
+  return result.join(' ');
+}

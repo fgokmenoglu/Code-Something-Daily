@@ -10,7 +10,7 @@ function maxlen(l1, l2) {
   if(max / 3 > min)
     return max / 3;
   
-  if(max - min > min)
+  if(max / 2 > min)
     return min;
   
   return max / 2;

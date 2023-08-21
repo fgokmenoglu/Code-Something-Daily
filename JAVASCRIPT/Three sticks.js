@@ -4,11 +4,14 @@ Imagine that you are given two sticks. You want to end up with three sticks of e
 Write a function, maxlen, that takes the lengths of the two sticks (L1 and L2, both positive values), that will return the maximum length you can make the three sticks.
 */
 function maxlen(l1, l2) {
-  if (l1 * 2 <= l2)
-    return l1;
+  let max = Math.max(l1, l2)
+  let min = Math.min(l1, l2)
   
-  if (l2 * 2 <= l1)
-    return l2;
+  if(max / 3 > min)
+    return max / 3
   
-  return 0;
+  if(max - min > min)
+    return min
+  
+  return max / 2
 }

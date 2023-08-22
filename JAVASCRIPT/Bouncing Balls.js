@@ -23,3 +23,24 @@ Examples:
 
 (Condition 2) not fulfilled).
 */
+function bouncingBall(h,  bounce,  window) {
+  if (h <= 0 || window >= h || bounce <= 0 || bounce >= 1)
+    return -1;
+  
+  let points = [];
+  
+  do {
+    points.push(h);
+    h = h * bounce;  
+  } while (h > window);
+  
+  console.log(points);
+  return (points.length * 2) - 1; 
+}
+
+// ALTERNATIVE
+/*
+  var rebounds = -1;
+  if (bounce > 0 && bounce < 1) while (h > window) rebounds+=2, h *= bounce;
+  return rebounds;
+*/

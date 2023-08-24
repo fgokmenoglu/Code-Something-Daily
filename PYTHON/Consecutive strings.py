@@ -23,3 +23,39 @@ n being the length of the string array, if n = 0 or k > n or k <= 0 return "" (r
 Note
 consecutive strings : follow one after another without an interruption
 """
+def longest_consec(strarr, k):
+    n = len(strarr)
+    
+    if (n == 0 or k > n or k <= 0):
+        return ''
+    
+    substring = '';
+    substring_length = 0;
+    
+    for i in range(n):
+        temp_substring = ''.join(strarr[i:i + k])
+        temp_substring_length = len(temp_substring);
+        
+        if temp_substring_length > substring_length:
+            substring = temp_substring;
+            substring_length = temp_substring_length;
+
+    return substring
+
+# ALTERNATIVE NOT USING JOIN IN EACH ITERATION SINCE IT IS NOT EFFICIENT"
+"""
+def longest_consec(strarr, k):
+    n = len(strarr)
+    if n == 0 or k > n or k <= 0:
+        return ''
+        
+    length = sum(len(strarr[i]) for i in range(k))
+    max_length = length
+    max_index = 0
+    for index in range(0, n - k):
+        length += len(strarr[index + k]) - len(strarr[index])
+        if length > max_length:
+            max_length, max_index = length, index + 1
+    
+    return ''.join(strarr[max_index:max_index + k])
+"""

@@ -13,3 +13,13 @@ Examples (input --> output):
 "Skippy" --> "##ippy"
 "Nananananananananananananananana Batman!" --> "####################################man!"
 """
+def maskify(cc):
+    if len(cc) < 5:
+        return cc
+    
+    to_be_masked = cc[:len(cc) - 4]
+    
+    return cc.replace(to_be_masked, '#' * len(to_be_masked))
+
+# ALTERNATIVE
+# return '#' * (len(cc) - 4) + cc[-4:]

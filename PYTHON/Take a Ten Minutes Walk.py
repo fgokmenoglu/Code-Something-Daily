@@ -8,3 +8,19 @@ of course, return you to your starting point. Return false otherwise.
 Note: you will always receive a valid array containing a random assortment of direction letters ('n', 's', 'e', or 'w' only). 
 It will never give you an empty array (that's not a walk, that's standing still!).
 """
+def is_valid_walk(walk):
+    if len(walk) != 10:
+        return False
+    
+    n_count = walk.count('n');
+    s_count = walk.count('s');
+    w_count = walk.count('w');
+    e_count = walk.count('e');
+    
+    if n_count == s_count and w_count == e_count:
+        return True
+    
+    return False
+
+# ALTERNATIVE
+# return len(walk) == 10 and walk.count('n') == walk.count('s') and walk.count('e') == walk.count('w')

@@ -25,3 +25,24 @@
  * Note:
  * Don't forget to convert the percent parameter as a percentage in the body of your function: if the parameter percent is 2 you have to convert it to 0.02.
  */
+function nbYear(p0, percent, aug, p) {
+  n = 0;
+  p_ = p0;
+  
+  do {
+    n = n + 1;
+    p_ = Math.floor(p_ + (p_ * percent / 100) + aug);
+  } while (p_ < p);
+  
+  return n;
+}
+// ALTERNATIVE USING FOR LOOP
+/*
+function nbYear(p0, percent, aug, p) {
+    
+  for (var years = 0; p0 < p; years++) {
+    p0 = Math.floor(p0 + p0 * percent / 100 + aug);
+  }
+  return years
+}
+*/

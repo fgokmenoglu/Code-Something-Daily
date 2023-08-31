@@ -24,5 +24,6 @@ def wave(people):
         result.append(temp)
         
     return result
+
 # ALTERNATIVE USING LIST COMPREHENSION
 # return [str[:i] + str[i].upper() + str[i+1:] for i in range(len(str)) if str[i].isalpha()]

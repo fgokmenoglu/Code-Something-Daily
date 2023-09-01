@@ -21,6 +21,8 @@ function eliminateUnsetBits(number) {
     
   return parseInt(number, 2);
 }
+// ALTERNATIVE
+// return parseInt(number.replace(/0/g,'') || 0, 2)
 /*
 || in a variable assignment is a common way to specify a default value. 
 This is because of JavaScript's falsy values. 

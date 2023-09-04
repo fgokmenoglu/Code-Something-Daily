@@ -22,3 +22,6 @@ def delete_nth(order, max_e):
         occurrences[n] += 1
 
     return result
+
+# Python Dictionary setdefault() returns the value of a key (if the key is in dictionary). 
+# Else, it inserts a key with the default value to the dictionary.

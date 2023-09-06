@@ -14,3 +14,17 @@ All arrays or lists will always have at least one element, so you don't need to 
 """
 def min_max(lst):
     return [min(lst), max(lst)]
+
+# ALTERNATIVE USING ONE PASS THROUGH THE LIST
+"""
+def min_max(lst):
+  min, max = lst[0], lst[0]
+  
+  for x in lst:
+    if x > max:
+      max = x
+    elif x < min:
+      min = x
+  
+  return [min, max]
+"""

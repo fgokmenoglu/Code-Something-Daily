@@ -20,3 +20,37 @@
  * digPow(695, 2) should return 2 since 6² + 9³ + 5⁴= 1390 = 695 * 2
  * digPow(46288, 3) should return 51 since 4³ + 6⁴+ 2⁵ + 8⁶ + 8⁷ = 2360688 = 46288 * 51
  */
+function digPow(n, p){
+  var digits = [];
+  var temp = n;
+  
+  while (temp > 0) {
+    digits.push(temp % 10);
+    temp = Math.floor(temp / 10);
+  }
+  
+  digits = digits.reverse();
+  // console.log(digits);
+  
+  for (let i = 0; i < digits.length; i++) {
+    digits[i] = digits[i] ** p;
+    p += 1;
+  }
+  
+  // console.log(digits);
+  const sum = digits.reduce((partialSum, a) => partialSum + a, 0);
+  var k = sum / n;
+  
+  if (Number.isInteger(k))
+    return k;
+  
+  return -1;
+}
+
+// ALTERNATIVE
+/* 
+function digPow(n, p) {
+  var x = String(n).split('').reduce((s, d, i) => s + Math.pow(d, p + i), 0);
+  return x % n ? -1 : x / n;
+}
+*/

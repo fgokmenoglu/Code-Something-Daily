@@ -19,3 +19,9 @@ def accum(s):
         i += 1
         
     return '-'.join(result)
+
+# ALTERNATIVE
+"""
+def accum(s):
+    return '-'.join((a * i).title() for i, a in enumerate(s, 1))
+"""

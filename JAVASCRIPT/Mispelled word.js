@@ -12,13 +12,18 @@
  *
  * In the tests that expect true, the mispelled word will always differ mostly by one character. If the two words are the same, return True.
  */
-var mispelled = function(word1, word2)
-{
-  if (word1 === word2)
-    return true;
-  
-  if (Math.abs(word1.length - word2.length) >= 2)
+function mispelled(word1, word2) {
+  if(Math.abs(word1.length - word2.length) >= 2)
     return false;
+    
+  if(Math.abs(word1.length - word2.length) == 1)
+    return (word1.includes(word2) || word2.includes(word1));
+ 
+ let res = 0;
   
+  for(let i = 0; i < word1.length; i++)  
+    if(word1[i] !== word2[i])
+      res += 1;
   
+  return res <= 1 ? true : false;
 }

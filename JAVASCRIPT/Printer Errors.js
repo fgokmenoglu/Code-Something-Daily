@@ -16,3 +16,27 @@
  * s="aaaxbbbbyyhwawiwjjjwwm"
  * printer_error(s) => "8/22"
  */
+function printerError(s) {
+  pattern = /[^a-m]/gi;
+  bad_part = s.match(pattern);
+  
+  if (bad_part == null)
+    return `0/${s.length}`;
+  
+  return `${bad_part.length}/${s.length}`;
+}
+
+// ALTERNATIVE WITHOUT REGEX
+function printerError(s) {
+    // your code
+    var count = 0;
+    for(var i = 0; i < s.length; i++) {
+      if (s[i] > "m") {
+        count++;
+      }
+    }
+    return count+"/"+s.length;
+}
+
+// ALTERNATIVE REGEX
+const printerError = s => `${s.replace(/[a-m]/gi, "").length}/${s.length}`;

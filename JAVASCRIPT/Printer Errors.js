@@ -35,7 +35,7 @@ function printerError(s) {
         count++;
       }
     }
-    return count+"/"+s.length;
+    return count + "/" + s.length;
 }
 
 // ALTERNATIVE REGEX

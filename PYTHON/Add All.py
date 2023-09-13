@@ -33,6 +33,12 @@ def add_all(lst):
         heapq.heappush(lst, first + second)
     
     return result
+    
+"""
+Heap queue is a special tree structure in which each parent node is less than or equal to its child node. 
+In python it is implemented using the heapq module. 
+It is very useful is implementing priority queues where the queue item with higher weight is given more priority in processing.
+"""
 
 # ALTERNATIVE
 def add_all(lst):

@@ -18,3 +18,31 @@ I hope you have understood already your mission: to add a set of integers so tha
 Your Task
 Given a vector of integers, return the minimum total cost of addition.
 """
+import heapq
+
+def add_all(lst):
+    result = 0
+    
+    heapq.heapify(lst)
+    
+    while len(lst) > 1:
+        first = heapq.heappop(lst)
+        second = heapq.heappop(lst)
+        
+        result += first + second
+        heapq.heappush(lst, first + second)
+    
+    return result
+
+# ALTERNATIVE
+def add_all(lst):
+    result = []
+  
+    while len(lst) > 1:
+        lst.sort()
+      
+        firstTwoFromList = lst.pop(0) + lst.pop(0)
+        lst.append(firstTwoFromList)
+        result.append(firstTwoFromList)
+      
+    return sum(result)

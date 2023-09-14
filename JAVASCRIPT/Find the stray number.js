@@ -9,3 +9,16 @@
  * [1, 1, 2] ==> 2
  * [17, 17, 3, 17, 17, 17, 17] ==> 3
  */
+function stray(numbers) {
+  unique_numbers = new Set(numbers);
+  // console.log(unique_numbers.values().next().value);
+  [first, second] = unique_numbers;
+  // console.log(first);
+  // console.log(second);
+  first_count = numbers.filter(i => i == first).length;
+  
+  return first_count == 1 ? first : second;
+}
+
+// ALTERNATIVE USING VARIOUS ARRAY METHODS
+const stray = numbers => numbers.find(num => numbers.indexOf(num) === numbers.lastIndexOf(num));

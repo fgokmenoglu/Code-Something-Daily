@@ -22,3 +22,7 @@ function stray(numbers) {
 
 // ALTERNATIVE USING VARIOUS ARRAY METHODS
 const stray = numbers => numbers.find(num => numbers.indexOf(num) === numbers.lastIndexOf(num));
+
+// The find() method of Array instances returns the first element in the provided array that satisfies the provided testing function. If no values satisfy the testing function, undefined is returned.
+// The indexOf() method of Array instances returns the first index at which a given element can be found in the array, or -1 if it is not present.
+// The lastIndexOf() method of Array instances returns the last index at which a given element can be found in the array, or -1 if it is not present. The array is searched backwards.

@@ -34,3 +34,8 @@ def get_length_of_missing_array(array_of_arrays):
     for i in range(min(len_of_arrays), max(len_of_arrays) + 1):
         if len_of_arrays.count(i) == 0:
             return i
+
+# ALTERNATIVE
+def get_length_of_missing_array(a):
+    lns = a and all(a) and list(map(len, a))
+    return bool(lns) and sum(range(min(lns), max(lns) + 1)) - sum(lns)

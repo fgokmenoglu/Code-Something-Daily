@@ -25,3 +25,18 @@
  *   this.toString = function() { return this.name; }
  * }
  */
+function declareWinner(fighter1, fighter2, firstAttacker) {
+  let currentAttacker = firstAttacker;
+  
+  while(fighter1.health > 0 && fighter2.health > 0) {   
+    if (currentAttacker == fighter1.name) {
+      fighter2.health -= fighter1.damagePerAttack;
+      currentAttacker = fighter2.name;
+    } else {
+      fighter1.health -= fighter2.damagePerAttack;
+      currentAttacker = fighter1.name;
+    }
+  }
+  
+  return fighter1.health <= 0 ? fighter2.name : fighter1.name;
+}

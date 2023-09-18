@@ -14,3 +14,17 @@
  * Input: [5,3,2,1,4], output = [5,3,2,4]
  * Input: [2,2,1,2,1], output = [2,2,2,1]
  */
+#include <vector>
+
+std::vector<unsigned int> removeSmallest(const std::vector<unsigned int>& numbers) { 
+  std::vector<unsigned int> result = numbers;
+  
+  if (result.empty())
+    return {};
+  
+  std::vector<unsigned int>::const_iterator min = std::min_element(numbers.begin(), numbers.end());
+  int index = std::distance(numbers.begin(), min);
+  result.erase(result.begin() + index);
+    
+  return result;
+}

@@ -13,3 +13,14 @@
  * gimme([5, 10, 14]) => 1
  * 10 is the number that fits between 5 and 14 and the index of 10 in the input array is 1.
  */
+function gimme (triplet) {
+  var min_of_triplet = Math.min(...triplet);
+  var max_of_triplet = Math.max(...triplet);
+  
+  return triplet.findIndex((x) => x != min_of_triplet && x != max_of_triplet);
+}
+
+// ALTERNATIVE
+function gimme (triplet) {
+  return arr.indexOf([...arr].sort((x, y) => x > y)[1]);
+}

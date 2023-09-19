@@ -27,3 +27,27 @@ int sum(vector<int> numbers)
   
   return total - (min + max);
 }
+
+// ALTERNATIVE
+#include <vector>
+using namespace std;
+
+int sum(vector<int> numbers)
+{
+    if (numbers.size() < 2) 
+      return 0;
+  
+    int sum = 0;
+    int min = numbers[0], max = numbers[0];
+  
+    for (int n : numbers) {
+      if (n < min) 
+        min = n;
+      else if (n > max) 
+        max = n;
+      
+      sum += n;
+    }
+  
+    return sum - max - min;
+}

@@ -12,3 +12,18 @@
  * 1 -->  1
  * 2 --> 3 + 5 = 8
  */
+#include <vector>
+#include <numeric>
+
+long long rowSumOddNumbers(unsigned int n){
+  std::vector<int> result = {};
+  int element = n * n - n + 1;
+  
+  for (unsigned int i = 1; i <= n; i++)
+  {    
+    result.push_back(element);
+    element += 2;
+  }
+  
+  return std::accumulate(result.begin(), result.end(), 0);
+}

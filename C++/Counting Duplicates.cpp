@@ -11,3 +11,17 @@
  * "aA11" -> 2 # 'a' and '1'
  * "ABBA" -> 2 # 'A' and 'B' each occur twice
  */
+#include <map>
+#include <algorithm>
+#include <cctype>
+
+size_t duplicateCount(const std::string& in)
+{
+  std::map<char,int> characters;
+  
+  for(int i = 0; in[i] != 0; i++)
+    characters[std::tolower(in[i])]++;
+  
+  return std::count_if(characters.begin(),characters.end(),
+    [](auto &i){ return i.second > 1 ? true : false; });
+}

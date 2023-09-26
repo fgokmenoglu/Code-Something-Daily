@@ -17,9 +17,9 @@
 
 size_t duplicateCount(const std::string& in)
 {
-  std::map<char,int> characters;
+  std::map<char, int> characters;
   
-  for(int i = 0; in[i] != 0; i++)
+  for(int i = 0; in[i] != '\0'; i++) // '\0' marks the end of the string
     characters[std::tolower(in[i])]++;
   
   return std::count_if(characters.begin(),characters.end(),

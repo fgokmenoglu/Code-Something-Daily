@@ -25,3 +25,9 @@ size_t duplicateCount(const std::string& in)
   return std::count_if(characters.begin(),characters.end(),
     [](auto &i){ return i.second > 1 ? true : false; });
 }
+
+/*
+Maps are associative containers that store elements in a mapped fashion. 
+Each element has a key value and a mapped value. 
+No two mapped values can have the same key values.
+*/

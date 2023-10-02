@@ -24,3 +24,32 @@
  * Explanation:
  * The first element 80 is the total weight of team 1, and the second element 0 is the total weight of team 2.
  */
+#include <vector>
+#include <utility>
+
+using namespace std; 
+
+pair<int,int> rowWeights (const vector <int> &weights) {
+  int sum1 = 0, sum2 = 0;
+  
+  for (auto i = 0; i < weights.size(); i++)
+    if (i % 2 == 0)
+      sum1 += weights[i];
+    else
+      sum2 += weights[i];
+  
+  return {sum1, sum2};
+}
+
+// ALTERNATIVE
+#include <vector>
+#include <utility>
+
+std::pair<int,int> rowWeights (const std::vector <int> &weights) {
+  int sums[2]{ 0, 0 };
+  
+  for (size_t i = 0; i < weights.size(); i++)
+    sums[i % 2] += weights[i];
+  
+  return std::make_pair(sums[0], sums[1]);
+}

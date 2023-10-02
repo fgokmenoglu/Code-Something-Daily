@@ -8,3 +8,13 @@
  * 2 --> 9 (sum of the cubes of 1 and 2 is 1 + 8)
  * 3 --> 36 (sum of the cubes of 1, 2, and 3 is 1 + 8 + 27)
  */
+#include <cmath>
+
+unsigned int sum_cubes(unsigned int n) {
+  int result = 0;
+  
+  for (auto i = 1; i <= n; i++)
+    result += pow(i, 3);
+  
+  return result;
+}

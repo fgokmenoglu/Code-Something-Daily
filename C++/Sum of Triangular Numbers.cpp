@@ -13,3 +13,19 @@
  * 
  * Triangular Numbers cannot be negative so return 0 if a negative number is given.
  */
+#include <vector>
+#include <numeric>
+
+int sumTriangularNumbers(int n) {
+  if (n <= 0)
+    return 0;
+  
+  std::vector<int> triangularNumbers = {1};
+  
+  for (auto i = 2; i <= n; i++)
+    triangularNumbers.push_back(i * i - triangularNumbers.back());
+  
+  auto result = std::reduce(triangularNumbers.begin(), triangularNumbers.end());
+  
+  return result;
+}

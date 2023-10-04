@@ -47,6 +47,8 @@ SequenceSum::SequenceSum (int c) {
 }
 
 // ALTERNATIVE
+// A stringstream associates a string object with a stream allowing you to read from the string as if it were a stream (like cin). 
+// To use stringstream, we need to include sstream header file. The stringstream class is extremely useful in parsing input.
 string SequenceSum::showSequence() {
   if (count < 0) return to_string(count) + "<0";
   

@@ -14,6 +14,7 @@
  * [output] a string
  */
 #include <string>
+#include <algorithm>
 
 std::string reverse_letter(const std::string &str) {
   std::string output = str;

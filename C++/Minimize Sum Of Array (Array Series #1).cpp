@@ -36,3 +36,18 @@ int minSum (vector<int>passed)
   
   return result; 
 }
+
+// ALTERNATIVE
+#include <vector>
+using namespace std;
+
+int minSum (vector<int>passed)
+{
+  std::sort (passed.begin(), passed.end()); 
+  int sum = 0;
+  for (int i =0 ; i< passed.size() / 2;i++)
+  {    
+    sum += passed[i] * passed[passed.size() - i - 1];
+  }
+  return sum; 
+}

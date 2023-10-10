@@ -23,3 +23,23 @@
  * movie(100, 10, 0.95) should return 24 
  *     (with card the total price is 235, with tickets 240)
  */
+#include <cmath>
+
+class Movie {
+  public:
+    static int movie(int card, int ticket, double perc) {
+      int numTimes = 1;
+      int systemCostA = 0; 
+      double systemCostB = card;
+    
+      while (systemCostA <= ceil(systemCostB)) {
+        systemCostA += ticket;
+        systemCostB += ticket * pow(perc, numTimes);
+        numTimes++;
+      }
+  
+      return numTimes - 1;
+    }
+};
+
+// The ceil() function in C++ returns the smallest possible 'integer' value which is greater than or equal to the given argument.

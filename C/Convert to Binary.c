@@ -26,8 +26,7 @@ unsigned long long to_binary(unsigned short num) {
 }
 
 // ALTERNATIVE
-unsigned long long to_binary(unsigned long long num)
-{
+unsigned long long to_binary(unsigned long long num) {
     unsigned long long binNumber = 0;
     unsigned long long temp = 1;
   

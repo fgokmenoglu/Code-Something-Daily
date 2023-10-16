@@ -30,8 +30,7 @@ size_t str_count(const char *str, char letter) {
 // ALTERNATIVE
 #include <stddef.h>
 
-size_t str_count(const char *str, char letter)
-{
+size_t str_count(const char *str, char letter) {
   int count = 0;
   while (*str) count += *str++ == letter;
   return count;

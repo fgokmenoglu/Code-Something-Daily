@@ -19,17 +19,14 @@ class MaxRotate {
   public: 
     static long long maxRot(long long n) {
       std::string numStr = std::to_string(n);
-      std::string maxNumStr = numStr;
       unsigned long long maxNum = n;
 
       for (size_t i = 0; i < numStr.length() - 1; ++i) {
         numStr = numStr.substr(0, i) + rotateLeft(numStr.substr(i));
         unsigned long long rotatedNum = std::stoull(numStr);
         
-        if (rotatedNum > maxNum) {
+        if (rotatedNum > maxNum)
           maxNum = rotatedNum;
-          maxNumStr = numStr;
-        }
       }
       
       return maxNum;

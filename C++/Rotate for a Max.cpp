@@ -37,8 +37,8 @@ class MaxRotate {
 };
 
 // ALTERNATIVE
-#include <algorithm>
-#include <string>
+#include <algorithm> // rotate()
+#include <string> // to_string(), stoll()
 
 class MaxRotate {
   public:

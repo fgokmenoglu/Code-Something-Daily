@@ -48,8 +48,8 @@ class MaxRotate {
 long long MaxRotate::maxRot(long long n) {
   std::string s = std::to_string(n);
   
-  for (int i = 0; i < s.length()-1; ++i) {
-    std::rotate(s.begin()+i, s.begin()+i+1, s.end());
+  for (int i = 0; i < s.length() - 1; ++i) {
+    std::rotate(s.begin() + i, s.begin() + i + 1, s.end());
     n = std::max(stoll(s), n);
   }
   

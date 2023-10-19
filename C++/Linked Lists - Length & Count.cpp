@@ -15,16 +15,32 @@
  * The push()/Push() and buildOneTwoThree()/BuildOneTwoThree() functions do not need to be redefined.
  */
 struct Node {
-  Node * next;
+  Node* next;
   int data;
 }
 
-int Length(Node *head) {
-  // Solution goes here
-  return 0;
+int Length(Node* head) {
+  int count = 0;
+  Node* current = head;
+  
+  while (current != NULL) {
+    count++;
+    current = current -> next;
+  }
+  
+  return count;
 }
 
-int Count(Node *head, int data) {
-  // Solution goes here
-  return 0;
+int Count(Node* head, int data) {
+  int count = 0;
+  Node* current = head;
+  
+  while (current != NULL) {
+    if (current -> data == data)
+      count++;
+    
+    current = current -> next;
+  }
+  
+  return count;
 }

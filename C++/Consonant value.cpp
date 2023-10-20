@@ -41,3 +41,19 @@ int solve(const std::string& s) {
 
     return maxConsonantValue;
 }
+
+// ALTERNATIVE
+#include <string>
+#include <algorithm>
+
+int solve(const std::string &s) {
+  int max = 0, test = 0;
+  for (auto c: s) {
+    if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+      max = std::max(max, test);
+      test = 0;
+    }
+    else test += c - 'a' + 1;
+  }
+  return std::max(max, test);
+}

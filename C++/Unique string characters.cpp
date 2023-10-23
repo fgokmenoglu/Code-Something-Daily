@@ -9,3 +9,18 @@
  * 
  * Notice also that you return the characters from the first string concatenated with those from the second string.
  */
+#include <string>
+
+std::string solve(std::string a, std::string b) {
+  std::string output = "";
+  
+  for (auto ch : a)
+    if (b.find(ch) == std::string::npos)
+      output.push_back(ch);
+  
+  for (auto ch : b)
+    if (a.find(ch) == std::string::npos)
+      output.push_back(ch);
+  
+  return output;
+}

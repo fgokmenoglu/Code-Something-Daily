@@ -14,5 +14,31 @@
  * Try to do it without using if statements!
  */
 double arithmetic(double a, double b, const char* operator) {
-  // Your Code here!
+  switch (operator[0]) {
+    case 'a':
+      return a + b;
+    case 's':
+      return a - b;
+    case 'm':
+      return a * b;
+    case 'd':
+      return a / b;
+  }
+}
+
+// ALTERNATIVE
+#include <string.h>
+
+double arithmetic(double a, double b, const char* operator) {
+  if(!strcmp(operator, "add"))
+    return a + b;
+
+  if(!strcmp(operator, "subtract"))
+    return a - b;
+
+  if(!strcmp(operator, "multiply"))
+    return a * b;
+
+  if(!strcmp(operator, "divide"))
+    return a / b;
 }

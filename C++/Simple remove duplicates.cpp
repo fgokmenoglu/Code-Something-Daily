@@ -10,7 +10,35 @@
  * Expected output: [4, 6, 3]
  */
 #include <vector>
+#include <unordered_map>
+
+std::vector<int> solve(std::vector<int> vec) {
+    std::unordered_map<int, int> lastOccurrence;
+    std::vector<int> result;
+
+    // Traverse the input vector in reverse order
+    for (int i = vec.size() - 1; i >= 0; i--) {
+        int current = vec[i];
+
+        // Check if we haven't seen this element before
+        if (lastOccurrence.find(current) == lastOccurrence.end()) {
+            lastOccurrence[current] = 1; 
+            result.push_back(current);   // Add the element to the result vector
+        }
+    }
+
+    // Reverse the result vector to maintain the original order
+    std::reverse(result.begin(), result.end());
+
+    return result;
+}
+
+// ALTERNATIVE
+#include <vector>
+#include <unordered_set>
 
 std::vector<int> solve(std::vector<int> vec){    
-    //..
+    std::unordered_set<int> s(vec.rbegin(), vec.rend());
+    vec.assign(s.begin(),s.end());
+    return vec;
 }

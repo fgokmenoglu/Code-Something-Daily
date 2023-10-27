@@ -8,9 +8,21 @@
  * 1, 1 --> "10" (1 + 1 = 2 in decimal or 10 in binary)
  * 5, 9 --> "1110" (5 + 9 = 14 in decimal or 1110 in binary)
  */
-char *binary_add (unsigned a, unsigned b, char *binary)
-{
-// write to the binary string and return it
-	*binary = '\0';
+typedef unsigned long long ull;
+
+unsigned bitlen (ull n) {
+	return (n == 0) ? 0 : (1 + bitlen(n >> 1));
+}
+
+char *binary_add (unsigned a, unsigned b, char *binary) {
+	ull sum = (ull)a + (ull)b;
+	unsigned length = (sum == 0) ? 1 : bitlen(sum);
+
+	for (int i = length - 1; i >= 0; i--) {
+		binary[i] = '0' + (sum & 1);
+		sum >>= 1;
+	}
+	
+	binary[length] = '\0';
 	return binary;
 }

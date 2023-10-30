@@ -61,3 +61,36 @@ ccp* ordered_count(const char *strin, size_t *szout) {
 
     return result;
 }
+
+// ALTERNATIVE
+#include <stddef.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct Character_Count_Pair {
+    char character;
+    size_t count;
+} ccp;
+
+ccp* ordered_count(const char *strin, size_t *szout) {
+    size_t len = strlen(strin);
+    ccp* result = malloc(len * sizeof(ccp));
+    size_t count = 0;
+    for (size_t i = 0; i < len; i++) {
+        char c = strin[i];
+        size_t j;
+        for (j = 0; j < count; j++) {
+            if (result[j].character == c) {
+                result[j].count++;
+                break;
+            }
+        }
+        if (j == count) {
+            result[count].character = c;
+            result[count].count = 1;
+            count++;
+        }
+    }
+    *szout = count;
+    return result;
+}

@@ -16,8 +16,7 @@
  */
 using namespace std;
 
-class Evaporator
-{
+class Evaporator {
 
   public:
     static int evaporator(double content, double evap_per_day, double threshold) {
@@ -37,15 +36,13 @@ class Evaporator
 #include <cmath>
 
 using namespace std;
-class Evaporator
-{
+class Evaporator {
 
   public:
   static int evaporator(double content, double evap_per_day, double threshold);
 };
 
-int Evaporator::evaporator(double content, double evap_per_day, double threshold)
-{
+int Evaporator::evaporator(double content, double evap_per_day, double threshold) {
   // Finding N in (1.0-evap_per_day) to the N is less than threshold
   // Which is logarithm of threshold in base (1.0-evap_per_day), rounded up
   // C++ stdlib doesn't give you arbitrary log, but log of N in base B == logN/logB for any base

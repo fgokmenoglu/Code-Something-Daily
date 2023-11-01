@@ -21,8 +21,34 @@
  * s = "123456" gives "234561".
  */
 #include <string>
+#include <cmath> // pow()
 
 class RevRot {
   public:
-    static std::string revRot(const std::string &strng, unsigned int sz);
+    static std::string revRot(const std::string &strng, unsigned int sz) {
+      std::string output = "";
+      
+      if (sz <= 0 || strng.length() == 0 || sz > strng.length())
+        return "";
+      
+      std::string tempSubStr = "";
+      int tempSum = 0;
+      
+      for (size_t i = 0; i < strng.length(); i += sz) {
+        tempSubStr = strng.substr(i, sz);
+        
+        for (size_t j = 0; j < sz; j++)
+          tempSum += pow(tempSubStr[j] - '0', 3);
+        
+        if (tempSum % 2 == 0)
+          reverse(tempSubStr.begin(), tempSubStr.end());
+        else {
+          // rotate tempSubStr to the left by one position  
+        }
+        
+        output += tempSubStr;
+      }
+      
+      return output;
+    }
 };

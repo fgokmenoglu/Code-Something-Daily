@@ -22,6 +22,7 @@
  */
 #include <string>
 #include <cmath> // pow()
+#include <iostream> // cout, endl
 
 class RevRot {
   public:
@@ -36,17 +37,25 @@ class RevRot {
       
       for (size_t i = 0; i < strng.length(); i += sz) {
         tempSubStr = strng.substr(i, sz);
+        // std::cout << tempSubStr << std::endl;
+        
+        if (tempSubStr.length() < sz)
+          continue;
         
         for (size_t j = 0; j < sz; j++)
           tempSum += pow(tempSubStr[j] - '0', 3);
         
-        if (tempSum % 2 == 0)
+        if (tempSum % 2 == 0) {
+          // std::cout << tempSum << std::endl;
           reverse(tempSubStr.begin(), tempSubStr.end());
+        }
         else {
-          // rotate tempSubStr to the left by one position  
+          // std::cout << tempSum << std::endl;
+          tempSubStr = tempSubStr.substr(1, tempSubStr.length() - 1) + tempSubStr[0];
         }
         
         output += tempSubStr;
+        tempSum = 0; // later noticed I was not resetting tempSum, above 'std:cout's really helped to see what's going on
       }
       
       return output;

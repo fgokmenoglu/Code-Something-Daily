@@ -61,3 +61,34 @@ class RevRot {
       return output;
     }
 };
+
+// ALTERNATIVE
+#include <string>
+#include <numeric>
+
+class RevRot {
+  public:
+    static std::string revRot(const std::string &strng, unsigned int sz) {
+      std::string result{""};
+      auto len = strng.length();
+      
+      if (len >= sz && sz > 0) {
+        auto begin = strng.cbegin();
+        auto end = begin + sz;
+        auto n = len / sz;
+        result.resize(n * sz);
+        auto result_pos = result.begin();
+        
+        for (unsigned int i = 0; i < n; ++i, begin = end, end += sz) {
+          auto count_odds = std::accumulate(begin, end, 0,
+            [](int acc, std::string::value_type c) { return acc + c & 0x1; });
+          
+          if (count_odds & 0x1)
+            result_pos = std::rotate_copy(begin, begin + 1, end, result_pos);
+          else
+            result_pos = std::reverse_copy(begin, end, result_pos);
+        }
+      }
+      return result;
+    }
+};

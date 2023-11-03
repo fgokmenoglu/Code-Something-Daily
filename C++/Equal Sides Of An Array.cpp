@@ -24,3 +24,23 @@
  * Note:
  * If you are given an array with multiple answers, return the lowest correct index.
  */
+#include <vector>
+
+using namespace std;
+
+int find_even_index(const vector <int> numbers) {
+  int leftSum = 0, rightSum = 0;
+  
+  for (size_t i = 0; i < numbers.size(); i++) {
+    for (size_t j = 0; j < i; j++)
+      leftSum += numbers[j];
+    
+    for (size_t k = i; k < numbers.size(); k++)
+      rightSum += numbers[k];
+    
+    if (leftSum == rightSum)
+      return i;
+  }
+  
+  return -1;
+}

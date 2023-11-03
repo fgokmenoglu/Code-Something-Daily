@@ -35,12 +35,32 @@ int find_even_index(const vector <int> numbers) {
     for (size_t j = 0; j < i; j++)
       leftSum += numbers[j];
     
-    for (size_t k = i; k < numbers.size(); k++)
+    for (size_t k = i + 1; k < numbers.size(); k++)
       rightSum += numbers[k];
     
     if (leftSum == rightSum)
       return i;
+    
+    leftSum = rightSum = 0;
   }
   
   return -1;
+}
+
+// ALTERNATIVE
+#include <vector>
+#include <numeric> // accumulate
+
+using namespace std;
+
+int find_even_index(const vector<int>& numbers) {
+    int totalSum = accumulate(numbers.begin(), numbers.end(), 0);
+    int leftSum = 0;
+    for (size_t i = 0; i < numbers.size(); i++) {
+        if (leftSum == totalSum - leftSum - numbers[i]) {
+            return i;
+        }
+        leftSum += numbers[i];
+    }
+    return -1;
 }

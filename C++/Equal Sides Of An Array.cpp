@@ -11,7 +11,7 @@
  * Let's look at another one.
  * You are given the array {20,10,-80,10,10,15,35}
  * At index 0 the left side is {}
- *  * The right side is {10,-80,10,10,15,35}
+ * The right side is {10,-80,10,10,15,35}
  * They both are equal to 0 when added. (Empty arrays are equal to 0 in this problem)
  * Index 0 is the place where the left side and right side are equal.
  * 

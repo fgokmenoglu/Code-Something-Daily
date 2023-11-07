@@ -43,3 +43,30 @@ std::string calculate(std::string str) {
   
   return std::to_string(result);
 }
+
+// ALTERNATIVE
+#include <string>
+
+std::string calculate(std::string str) {
+  std::size_t pos = 0;
+  int result = std::stoi(str, &pos);
+  while (pos < str.size()) {
+    if (str[pos] == 'p') {
+      pos += 4;
+      str = str.substr(pos);
+      result += std::stoi(str, &pos);
+    }
+    else {
+      pos += 5;
+      str = str.substr(pos);
+      result -= std::stoi(str, &pos);
+    }
+  }
+  
+  return std::to_string(result);
+}
+
+// stoi(str, idx, base) : If idx is not a null pointer, the function also sets the value of idx 
+// to the position of the first character in str after the number.
+// substr(pos, len) : The substring is the portion of the object that starts at character position
+// pos and spans len characters (or until the end of the string, whichever comes first).

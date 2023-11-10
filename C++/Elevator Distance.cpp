@@ -14,7 +14,23 @@
  * Array will always contain at least 2 floors. Random tests will contain 2-20 elements in array, and floor values between 0 and 30.
  */
 #include <vector>
+#include <cmath>
 
 int elevator_distance(std::vector<int> array) {
-  return 0;
+  int output = 0;
+  
+  for (size_t i = 0; i < array.size() - 1; i++)
+    output += abs(array[i] - array[i + 1]);
+    
+  return output;
+}
+
+// ALTERNATIVE
+#include <vector>
+#include <numeric>
+
+int elevator_distance(std::vector<int> v) {
+  std::adjacent_difference(v.begin(), v.end(), v.begin(), [](int x, int y) {return std::abs(x - y); });
+  
+  return std::accumulate(v.begin() + 1, v.end(), 0);
 }

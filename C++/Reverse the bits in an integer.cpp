@@ -24,3 +24,14 @@ unsigned int reverse_bits(unsigned int n) {
   
   return output;
 }
+
+// ALTERNATIVE
+#include <cmath>
+#include <bitset>
+
+unsigned int reverse_bits(unsigned int n) {
+  std::string s = (std::bitset<32>(n)).to_string();
+  reverse(find(s.begin(),s.end(),'1'),s.end());
+  
+  return std::bitset<32>(s).to_ulong();
+}

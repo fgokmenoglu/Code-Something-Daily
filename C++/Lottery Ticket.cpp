@@ -16,5 +16,15 @@
 #include <vector>
 
 std::string bingo(std::vector<std::pair<std::string, int>> ticket, int win) {
-  return "";
+  int miniWin = 0;
+  
+  for (size_t i = 0; i < ticket.size(); i++) {
+    std::string temp = ticket[i].first;
+    
+    for (size_t j = 0; j < temp.length(); j++)
+      if (int(temp[j]) == ticket[i].second)
+        miniWin += 1;
+  }
+  
+  return miniWin >= win ? "Winner!" : "Loser!";
 }

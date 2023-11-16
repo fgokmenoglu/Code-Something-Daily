@@ -14,6 +14,7 @@
  */
 #include <string>
 #include <vector>
+#include <utility>
 
 std::string bingo(std::vector<std::pair<std::string, int>> ticket, int win) {
   int miniWin = 0;
@@ -27,4 +28,16 @@ std::string bingo(std::vector<std::pair<std::string, int>> ticket, int win) {
   }
   
   return miniWin >= win ? "Winner!" : "Loser!";
+}
+
+// ALTERNATIVE
+#include <string>
+#include <vector>
+#include <utility>
+#include <algorithm>
+
+std::string bingo(std::vector<std::pair<std::string, int>> ticket, int win) {
+    return std::count_if(ticket.begin(), ticket.end(), [](const auto& i) {
+        return std::any_of(i.first.begin(), i.first.end(), [&](const char& j) { return j == i.second; });
+    }) >= win ? "Winner!" : "Loser!" ;
 }

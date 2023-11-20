@@ -36,3 +36,39 @@
  * 0 < start <= end
  * In C, the returned value will be free'd.
  */
+#include <array>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+array<int, 10> paint_letterboxes(int start, int end) {
+  array<int, 10> output = {};
+  
+  for (int i = start; i <= end; i++) {
+    string temp = to_string(i);
+    
+    for(int j = 0; j < 10; j++) {
+      char digit = '0' + j;
+      
+      output[j] += count(temp.begin(), temp.end(), digit);
+    }
+  }
+  
+  return output;
+}
+
+// ALTERNATIVE
+#include <array>
+
+using namespace std;
+
+array<int, 10> paint_letterboxes(int start, int end) {
+  array<int, 10> frequencies = {};
+  
+  for (int i = start; i <= end; i++)
+    for (int n = i; n > 0; n /= 10)
+      frequencies[n % 10]++;
+  
+  return frequencies;
+}

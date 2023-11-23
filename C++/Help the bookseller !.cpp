@@ -26,3 +26,38 @@
  * In the result codes and their values are in the same order as in M.
  * See "Samples Tests" for the return.
  */
+#include <string>
+#include <vector>
+#include <sstream>
+#include <unordered_map>
+
+class StockList {
+public:
+    static std::string stockSummary(std::vector<std::string> &lstOfArt, std::vector<std::string> &categories) {
+        if (lstOfArt.empty() || categories.empty())
+            return "";
+
+        std::unordered_map<char, int> stockMap; // To store sum of books for each category
+
+        // Iterate over the list of book codes and sum quantities
+        for (const auto &book : lstOfArt) {
+            char category = book[0]; // First character is the category
+            int quantity = std::stoi(book.substr(book.find(' ') + 1)); // Extract quantity
+            stockMap[category] += quantity; // Sum up quantities for each category
+        }
+
+        std::stringstream result;
+        bool first = true;
+
+        // Iterate over the categories and build the result string
+        for (const auto &category : categories) {
+            if (!first)
+                result << " - "; // Adding separator between categories
+
+            first = false;
+            result << "(" << category << " : " << stockMap[category[0]] << ")"; // Format: (A : 20)
+        }
+
+        return result.str();
+    }
+};

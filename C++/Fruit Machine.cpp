@@ -15,15 +15,15 @@
  * SCORING
  * Item    Three of the same    Two of the same    Two of the same plus one Wild
  * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
- * Wild    100                  10                 N/A
+ * Wild    90                   9                  18
+ * Wild    80                   8                  16
+ * Wild    70                   7                  14
+ * Wild    60                   6                  12
+ * Wild    50                   5                  10
+ * Wild    40                   4                  8
+ * Wild    30                   3                  6
+ * Wild    20                   2                  4
+ * Wild    10                   1                  2
  *
  * RETURNS
  * Return an integer of the score.

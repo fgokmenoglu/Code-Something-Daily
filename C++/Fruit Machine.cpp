@@ -43,3 +43,49 @@
  * 
  * result == 50
  */
+#include <array>
+#include <vector>
+#include <string>
+#include <unordered_map>
+
+using namespace std;
+
+unsigned fruit(const array<vector<string>, 3> &reels, const array<unsigned, 3> &spins) {
+    // Map to hold the scoring values for each item
+    unordered_map<string, unsigned> scores = {
+        {"Wild", 100}, {"Star", 90}, {"Bell", 80}, {"Shell", 70}, {"Seven", 60},
+        {"Cherry", 50}, {"Bar", 40}, {"King", 30}, {"Queen", 20}, {"Jack", 10}
+    };
+
+    // Get the items from the reels at the spun positions
+    string first = reels[0][spins[0] % 10];
+    string second = reels[1][spins[1] % 10];
+    string third = reels[2][spins[2] % 10];
+
+    // Count the occurrences of each item
+    unordered_map<string, int> counts;
+    counts[first]++;
+    counts[second]++;
+    counts[third]++;
+
+    if (counts[first] == 3 || counts[second] == 3 || counts[third] == 3) {
+      // If three of the same item
+      return scores[first]; // Can return score of any, as all are same in this case
+    } 
+    else if (counts[first] == 2 || counts[second] == 2 || counts[third] == 2) {
+      // If two of the same item
+      string twoOfSame = counts[first] == 2 ? first : (counts[second] == 2 ? second : third);
+      
+      if (counts["Wild"] == 1) {
+        // If two of the same plus one Wild
+        return 2 * scores[twoOfSame] / 10;
+      } 
+      else {
+        // Only two of the same
+        return scores[twoOfSame] / 10;
+      }
+    } 
+    else {
+      return 0;      
+    }
+}

@@ -8,7 +8,39 @@
  * Notice that the last element is always included. All numbers will be greater than 0.
  */
 #include <vector>
+#include <algorithm>
 
 std::vector<int> solve(std::vector<int> array) {
-  //your code here
+  std::vector<int> output = {};
+  
+  for (size_t i = 0; i < array.size(); i++) {
+    bool dominant = true;
+    
+    for (size_t j = i + 1; j < array.size(); j++) {
+      if (array[j] > array[i])
+        dominant = false;
+    }
+    
+    if (dominant)
+      if (std::count(output.cbegin(), output.cend(), array[i]) == 0)
+        output.push_back(array[i]);
+  }
+  
+  return output;
+}
+
+// ALTERNATIVE
+#include <algorithm>
+#include <vector>
+
+std::vector<int> solve(const std::vector<int>& xs) {
+  std::vector<int> res;
+  
+  for (auto i = xs.crbegin(); i != xs.crend(); ++i)
+    if (res.empty() || *i > res.back())
+      res.push_back(*i);
+  
+  std::reverse(res.begin(), res.end());
+  
+  return res;
 }

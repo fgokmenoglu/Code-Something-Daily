@@ -11,6 +11,18 @@
  * solve("v") = True
  * All inputs will be lowercase letters.
  */
+#include <string>
+#include <algorithm>
+
 bool solve(std::string s) {
-	//..
+	if (s.length() == 1)
+    return true;
+  
+  std::sort(s.begin(), s.end());
+  
+  for (size_t i = 0; i < s.length() - 1; i++)
+    if (s[i] - s[i + 1] != -1)
+      return false;
+  
+  return true;
 }

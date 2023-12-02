@@ -29,16 +29,15 @@ class Rotations {
       if (strng == "")
         return true;
       
-      int count = 0;
+      std::string temp = strng;
       
       for (size_t i = 0; i < strng.length(); i++) {
-        std::string temp = strng;
-        std::rotate(temp.begin(), temp.begin() + i, temp.end());
+        std::rotate(temp.begin(), temp.begin() + 1, temp.end());
         
         if (std::find(arr.begin(), arr.end(), temp) != arr.end())
-          count += 1;
+          return false;
       }
       
-      return count == strng.length();
+      return true;
     }
 };

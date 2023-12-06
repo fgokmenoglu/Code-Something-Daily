@@ -20,7 +20,51 @@
  * Note - there will be no punctuation or digits in the input string, only letters.
  */
 #include <string>
+#include <algorithm>
+ 
+std::string& ltrim(std::string &s) {
+    auto it = std::find_if(s.begin(), s.end(),
+                    [](char c) {
+                        return !std::isspace<char>(c, std::locale::classic());
+                    });
+    s.erase(s.begin(), it);
+  
+    return s;
+}
+ 
+std::string& rtrim(std::string &s) {
+    auto it = std::find_if(s.rbegin(), s.rend(),
+                    [](char c) {
+                        return !std::isspace<char>(c, std::locale::classic());
+                    });
+    s.erase(it.base(), s.end());
+  
+    return s;
+}
+ 
+std::string& trim(std::string &s) {
+    return ltrim(rtrim(s));
+}
 
-bool valid_spacing(const std::string& s) {
-    return false; // write your code here
+bool valid_spacing(const std::string &s) {
+  if (s.empty())
+    return true;
+  
+  if(s[0] == ' ' || s[s.length() - 1] == ' ')
+    return false;
+  
+  for (size_t i = 0; i < s.length() - 1; ++i)
+    if (s[i] == ' ' && s[i + 1] == ' ')
+      return false;
+  
+  std::string temp = s;
+  
+  return trim(temp) == s;
+}
+
+// ALTERNATIVE
+#include <string>
+
+bool valid_spacing(std::string_view s) {
+  return s.empty() || s.front() != ' ' && s.back() != ' ' && s.find("  ") == std::string::npos;
 }

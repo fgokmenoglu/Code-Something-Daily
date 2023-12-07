@@ -17,6 +17,17 @@
  */
 #include <string>
 
-std::string trim(const std::string& phrase, size_t size) {
-  return ""; // code here
+std::string trim(const std::string& phrase, size_t size) {  
+    // No trimming needed if the phrase length is within the size limit
+    if (phrase.length() <= size) {
+        return phrase;
+    }
+
+    // If the size is less than or equal to 3, the dots count in the size
+    if (size <= 3) {
+        return phrase.substr(0, size) + "...";
+    }
+    
+    // For size greater than 3, subtract the length of the dots from the size
+    return phrase.substr(0, size - 3) + "...";
 }

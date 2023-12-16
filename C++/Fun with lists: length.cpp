@@ -16,5 +16,18 @@ class Node {
 
 template <class T>
 int length(const Node<T> *head) {
-    return 0;
+  int llength = 0;
+  
+  while (head != NULL) {
+    llength += 1;
+    head = head->next;
+  }
+  
+  return llength;
+}
+
+// ALTERNATIVE
+template <class T>
+int length(const Node<T> *head) {
+    return !head ? 0 : 1 + length(head->next);
 }

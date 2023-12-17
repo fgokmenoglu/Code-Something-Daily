@@ -11,5 +11,20 @@
 #include <vector>
 
 unsigned int number(const std::vector<std::pair<int, int>>& busStops) {
-  //your code here
+  unsigned int output = 0;
+  
+  for (size_t i = 0; i < busStops.size(); ++i)
+    output += (busStops[i].first - busStops[i].second);
+  
+  return output;
+}
+
+// ALTERNATIVE
+#include <utility>
+#include<vector>
+
+unsigned int number(const std::vector<std::pair<int, int>>& busStops) {
+  unsigned int passengers = 0;
+  for(auto i: busStops)  passengers += i.first - i.second;
+  return passengers;
 }

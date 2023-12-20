@@ -10,7 +10,24 @@
  */
 #include <string>
 
-int secondSymbol(const std::string& str, char symbol) {
-  //your code here
-  return str[0] || symbol ? -1 : -1;
+int secondSymbol(const std::string& str, char symbol) { 
+  std::size_t found = str.find(symbol);
+  
+  if (found != std::string::npos) {
+    std::size_t found2 = str.find(symbol, found + 1);
+    return found2 != std::string::npos ? found2 : -1;
+  }
+  
+  return -1; // there is no such symbol in the given string
 }
+
+// ALTERNATIVE
+#include <string>
+
+int secondSymbol(const std::string& str, char symbol) {
+  return str.find(symbol, str.find(symbol) + 1);
+}
+
+// The constant, std::string::npos, is defined with a value of -1, 
+// which because size_t is an unsigned integral type, it is the 
+// largest possible representable value for this type.

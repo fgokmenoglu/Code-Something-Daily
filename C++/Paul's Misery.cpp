@@ -34,13 +34,13 @@ std::string paul(const std::vector<std::string>& x) {
     for (const std::string& activity : x)
         score += points[activity]; // Add points for each activity
 
-    if (score < 40)
+    if (score < 40) 
         return "Super happy!";
-    else if (score < 70)
+    else if (score < 70) 
         return "Happy!";
-    else if (score < 100)
+    else if (score < 100) 
         return "Sad!";
-    else
+    else 
         return "Miserable!";
 }
 

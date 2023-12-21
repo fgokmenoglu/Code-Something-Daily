@@ -31,19 +31,17 @@ std::string paul(const std::vector<std::string>& x) {
 
     int score = 0;
 
-    for (const std::string& activity : x) {
+    for (const std::string& activity : x)
         score += points[activity]; // Add points for each activity
-    }
 
-    if (score < 40) {
+    if (score < 40)
         return "Super happy!";
-    } else if (score < 70) {
+    else if (score < 70)
         return "Happy!";
-    } else if (score < 100) {
+    else if (score < 100)
         return "Sad!";
-    } else {
+    else
         return "Miserable!";
-    }
 }
 
 // ALTERNATIVE
@@ -58,7 +56,9 @@ std::string paul(const std::vector<std::string>& x) {
     };
     
     int n = 0;
+    
     for (std::string s: x) n += m[s];
+    
     switch (n) {
         case  0 ... 39 : return "Super happy!";
         case 40 ... 69 : return "Happy!";

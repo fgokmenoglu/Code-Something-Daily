@@ -19,7 +19,47 @@
  */
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 std::string paul(const std::vector<std::string>& x) {
-  return "";
+    std::unordered_map<std::string, int> points = {
+        {"kata", 5},
+        {"Petes kata", 10},
+        {"life", 0},
+        {"eating", 1}
+    };
+
+    int score = 0;
+
+    for (const std::string& activity : x) {
+        score += points[activity]; // Add points for each activity
+    }
+
+    if (score < 40) {
+        return "Super happy!";
+    } else if (score < 70) {
+        return "Happy!";
+    } else if (score < 100) {
+        return "Sad!";
+    } else {
+        return "Miserable!";
+    }
+}
+
+// ALTERNATIVE
+#include <string>
+#include <vector>
+
+std::string paul(const std::vector<std::string>& x) {
+  std::map<std::string,int> m = {{"kata",       5  },
+                                 {"Petes kata", 10 },
+                                 {"eating",     1  }};
+  int n = 0;
+  for (std::string s: x) n += m[s];
+  switch (n) {
+      case  0 ... 39 : return "Super happy!";
+      case 40 ... 69 : return "Happy!";
+      case 70 ... 99 : return "Sad!";
+      default        : return "Miserable!";
+  }
 }

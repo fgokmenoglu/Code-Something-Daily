@@ -51,15 +51,18 @@ std::string paul(const std::vector<std::string>& x) {
 #include <vector>
 
 std::string paul(const std::vector<std::string>& x) {
-  std::map<std::string,int> m = {{"kata",       5  },
-                                 {"Petes kata", 10 },
-                                 {"eating",     1  }};
-  int n = 0;
-  for (std::string s: x) n += m[s];
-  switch (n) {
-      case  0 ... 39 : return "Super happy!";
-      case 40 ... 69 : return "Happy!";
-      case 70 ... 99 : return "Sad!";
-      default        : return "Miserable!";
-  }
+    std::map<std::string, int> m = {
+        {"kata",       5  },
+        {"Petes kata", 10 },
+        {"eating",     1  }
+    };
+    
+    int n = 0;
+    for (std::string s: x) n += m[s];
+    switch (n) {
+        case  0 ... 39 : return "Super happy!";
+        case 40 ... 69 : return "Happy!";
+        case 70 ... 99 : return "Sad!";
+        default        : return "Miserable!";
+    }
 }

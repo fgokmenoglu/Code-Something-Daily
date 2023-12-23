@@ -12,3 +12,35 @@
  * 1- maxTriSum ({3,2,6,8,2,3}) ==> return (17)
  * Explanation: As the triplet that maximize the sum {6,8,3} in order , their sum is 17.
  */
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+using namespace std; 
+
+int maxTriSum (vector <int> numbers) { 
+  sort(numbers.begin(), numbers.end(), greater<int>());
+  numbers.erase(unique(numbers.begin(), numbers.end()), numbers.end());
+  
+  return numbers[0] + numbers[1] + numbers[2];
+}
+
+// ALTERNATIVE
+#include <vector>
+#include <set>
+#include <algorithm>
+#include <functional>
+
+using namespace std; 
+
+int maxTriSum (vector <int> numbers) {
+  set<int> uniqueNumbers;
+  
+  for(size_t i = 0; i < numbers.size(); ++i) 
+    uniqueNumbers.insert(numbers[i]);
+  
+  numbers.assign(uniqueNumbers.begin(), uniqueNumbers.end());
+  sort(numbers.begin(), numbers.end(), greater<int>());
+  
+  return numbers[0] + numbers[1] + numbers[2];
+}

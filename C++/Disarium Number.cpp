@@ -9,3 +9,17 @@
  * Number passed is always positive.
  * Return the result as string.
  */
+#include <string>
+#include <cmath>
+
+using namespace std; 
+
+string disariumNumber(int number) {
+  string num = to_string(number);
+  int sum = 0;
+  
+  for(size_t i = 1; i <= num.length(); ++i)
+    sum += pow((num[i - 1] - '0'), i);
+  
+  return number == sum ? "Disarium !!" : "Not !!";
+}

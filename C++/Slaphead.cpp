@@ -19,5 +19,47 @@
 #include <utility>
 
 std::pair<std::string, std::string> bald(const std::string& s) {
-  // your code here
+  int count = 0;
+  
+  for (size_t i = 0; i < s.length(); ++i)
+    if (s[i] == '/')
+      count += 1;
+
+  switch (count) {
+    case 0: return {std::string(s.length(), '-'), "Clean!"};
+    case 1: return {std::string(s.length(), '-'), "Unicorn!"};
+    case 2: return {std::string(s.length(), '-'), "Homer!"};
+    case 3 ... 5: return {std::string(s.length(), '-'), "Careless!"};
+    default: return {std::string(s.length(), '-'), "Hobo!"};
+  }
+}
+
+// ALTERNATIVE
+#include <string>
+#include <utility>
+
+std::pair<std::string, std::string> bald(const std::string& s) {
+  size_t n = std::count(s.begin(), s.end(), '/');
+  std::string r;
+  
+  switch (n) {
+    case 0  : r = "Clean!"; break;
+    case 1  : r = "Unicorn!"; break;
+    case 2  : r = "Homer!"; break;
+    case 3  :
+    case 4  :
+    case 5  : r = "Careless!"; break;
+    default : r = "Hobo!";
+  }
+  
+  return {std::string(s.size(), '-'), r};
+}
+
+// ALTERNATIVE 2
+#include <string>
+#include <utility>
+
+std::pair<std::string, std::string> bald(std::string s, int c = 0) {
+	std::transform(s.begin(), s.end(), s.begin(), [&](char x) { if (x == '/') ++c; return '-'; });
+	return { s, c == 0 ? "Clean!" : c == 1 ? "Unicorn!" : c == 2 ? "Homer!" : c <= 5 ? "Careless!" : "Hobo!" };
 }

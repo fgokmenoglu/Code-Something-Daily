@@ -13,7 +13,6 @@
  * ex3 ~O~O~O~OP~O~OO~ has 2 deaf rats
  */
 
-
 #include <string>
 
 int countDeafRats(const std::string &town) {

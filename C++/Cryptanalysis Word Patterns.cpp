@@ -8,7 +8,29 @@
  * All words provided will be non-empty strings of alphabetic characters only, i.e. matching the regex "[a-zA-Z]+".
  */
 #include <string>
+#include <unordered_map>
+#include <cctype>
 
 std::string wordPattern(const std::string &word) {
-  return "";
+    std::unordered_map<char, int> charMap;
+    std::string pattern = "";
+    int code = 0;
+
+    for (char ch : word) {
+        // Convert to lowercase
+        ch = std::tolower(ch);
+
+        // If the character is not in the map, assign a new code
+        if (charMap.find(ch) == charMap.end()) {
+            charMap[ch] = code++;
+        }
+
+        // Append the code to the pattern string
+        if (!pattern.empty())
+            pattern += ".";
+
+        pattern += std::to_string(charMap[ch]);
+    }
+
+    return pattern;
 }

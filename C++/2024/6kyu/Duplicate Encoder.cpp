@@ -40,6 +40,7 @@ std::string duplicate_encoder(const std::string& word) {
 
 // ALTERNATIVE
 #include <string>
+#include <map>
 #include <cctype>
 
 std::string duplicate_encoder(const std::string& word) {

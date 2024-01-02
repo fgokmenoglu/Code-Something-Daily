@@ -14,7 +14,40 @@
  * If you read "...It Should encode XXX", the "XXX" is the expected result, not the input!
  */
 #include <string>
+#include <unordered_map>
+#include <cctype>
 
 std::string duplicate_encoder(const std::string& word) {
-  return "";
+  std::unordered_map<char, int> mapping;
+  std::string output = "";
+  
+  for (char ch : word) {
+    ch = std::tolower(ch);
+    ++mapping[ch];
+  }
+  
+  for (char ch : word) {
+    ch = std::tolower(ch);
+    
+    if (mapping[ch] > 1)
+      output += ')';
+    else
+      output += '(';
+  }
+  
+  return output;
+}
+
+// ALTERNATIVE
+#include <string>
+#include <cctype>
+
+std::string duplicate_encoder(const std::string& word) {
+    std::map<char, int> table;
+    for (auto x : word) table[std::tolower(x)]++;
+    
+    std::string result;
+    for (auto x: word) result += (table[std::tolower(x)] == 1) ? "(" : ")";
+    
+    return result;
 }

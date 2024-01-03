@@ -9,6 +9,6 @@
  */
 #include<string>
 
-std::string numberFormat(long long n){
+std::string numberFormat(long long n) {
   //your code here
 }

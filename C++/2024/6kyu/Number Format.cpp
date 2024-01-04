@@ -48,7 +48,7 @@ std::string numberFormat(long long n) {
 	std::string str = std::to_string(n);
   
 	for (int i = str.size() - 3; i > 0; i -= 3) {
-		if (str.at(i-1) == '-') 
+		if (str.at(i - 1) == '-') 
       break;
     
 		str.insert(str.begin() + i, ',');

@@ -1,3 +1,22 @@
+/*
+INTRODUCTION
+Namespaces in C++ are a fundamental concept that help you organize code into logical groups and prevent name conflicts in large projects. 
+Essentially, a namespace is a declarative region that provides a scope to the identifiers (names of types, function, variables, etc.) inside it.
+
+NESTED NAMESPACES
+You can nest namespaces within each other to create complex hierarchical structures. 
+This hierarchy mirrors the logical or functional structure of your code, which can make it easier to manage and understand, especially in large projects.
+
+INLINE NAMESPACES
+Introduced in C++11, there are also inline namespaces. They are used mostly for versioning. Members of an inline namespace can be used as if they belong to the parent namespace.
+You can create an alias for a namespace to shorten long namespace names.
+
+NOTES
+Be mindful of what you include in a namespace. Too many different things in one namespace can become hard to manage.
+Group related classes, functions, etc., under a namespace that represents their module or functionality.
+Headers are about file organization and code sharing, while namespaces are about organizing the actual names and identifiers in your code.
+*/
+
 // Secret knowledge of the Zhang family:
 namespace zhang {
     int bank_number_part(int secret_modifier) {

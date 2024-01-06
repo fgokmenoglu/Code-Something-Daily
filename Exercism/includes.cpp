@@ -12,6 +12,12 @@ Namespaces are kept as they are in the original file after includes.
 THE STANDARD LIBRARY
 The standard library offers many common functions, algorithms, and data structures. The standard library uses the std namespace.
 One example is the C numerics library cmath. It provides many common mathematical operations.
+
+NOTES
+Standard libraries are included with angled braces <> instead of double quotes ". 
+The difference is the location, where the compiler searches for the respective files. 
+The search in the current project is skipped for the angled braces version, and it directly starts in the system's include directories. 
+If you want to include local files you would use double quotes
 */
 
 /*

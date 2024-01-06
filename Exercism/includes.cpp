@@ -28,5 +28,23 @@ If you want to include local files you would use double quotes
 #include <string>
 
 namespace log_line {
-
+    std::string message(std::string logLine) {
+        // find the position of whitespace just before the message
+        size_t pos = logLine.find(" ");
+        // return the log message that is from 'pos + 1' to the end of a log line
+        return logLine.substr(pos + 1);
+    }
+    std::string log_level(std::string logLine) {
+        // find the position of ']' enclosing the log level information
+        size_t pos = logLine.find("]");
+        // return the log level that starts at index 1 and has length 'pos - 1' 
+        return logLine.substr(1, pos - 1);
+    }
+    std::string reformat(std::string logLine) {
+        // Get the log message and the log level from the corresponding methods
+        std::string messagePart = message(logLine);
+        std::string levelPart = log_level(logLine);
+        // Return the reformatted log line 
+        return messagePart + " (" + levelPart + ")";
+    }
 } // namespace log_line

@@ -63,3 +63,29 @@ string alphabetWar(string fight) {
     
     return result > 0 ? "Left side wins!" : result < 0 ? "Right side wins!" : "Let's fight again!";
 }
+
+// ALTERNATIVE
+#include <string>
+using namespace std;
+
+string alphabetWar(string fight) { 
+    int result = 0;
+    string bombed = fight;
+    std::map<char, int> map(
+    {
+    {'w',4},{'p',3},{'b',2},{'s',1},
+    {'m',-4},{'q',-3},{'d',-2},{'z',-1}
+    }
+    );
+
+    for(int i = 0; i < fight.size(); i++) {
+      if(fight[i] == '*') {
+          if(i != 0) bombed[i-1] = '_';
+          if(i != fight.size()-1) bombed[i+1] = '_';
+      }
+    }
+    
+    for(char c : bombed) result += map[c];
+    
+    return result > 0 ? "Left side wins!" : result == 0 ? "Let's fight again!" : "Right side wins!";
+}

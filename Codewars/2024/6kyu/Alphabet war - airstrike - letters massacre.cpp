@@ -21,43 +21,45 @@
  * AlphabetWar("www*www****z");  //=> Left side wins!
 */
 #include <string>
+#include <vector>
 
 using namespace std;
 
 string alphabetWar(string fight) {
-  int result = 0;
-  
-  for (size_t i = 0; i < fight.length(); ++i) {
-    if (fight[i] == '*')
-      if ((i - 1) < 0)
-        fight[i + 1] = ' ';
-      else if ((i + 1) == fight.length())
-        fight[i - 1] = ' ';
-      else {
-        fight[i - 1] = ' ';
-        fight[i + 1] = ' ';
-      }
-  }
-  
-  for (size_t i = 0; i < fight.length(); ++i)
-    switch (fight[i]) {
-      case 'w':
-        result += 4; break;
-      case 'p':
-        result += 3; break;
-      case 'b':
-        result += 2; break;
-      case 's':
-        result += 1; break;
-      case 'm':
-        result -= 4; break;
-      case 'q':
-        result -= 3; break;
-      case 'd':
-        result -= 2; break;
-      case 'z':
-        result -= 1; break;
+    int result = 0;
+    vector<bool> exploded(fight.length(), false);
+
+    // Mark the positions affected by bombs
+    for (size_t i = 0; i < fight.length(); ++i) {
+        if (fight[i] == '*') {
+            if (i > 0) exploded[i - 1] = true;
+            if (i < fight.length() - 1) exploded[i + 1] = true;
+        }
     }
-         
-  return result > 0 ? "Left side wins!" : result < 0 ? "Right side wins!" : "Let's fight again!";
+
+    // Calculate the result based on the unaffected characters
+    for (size_t i = 0; i < fight.length(); ++i) {
+        if (!exploded[i]) {
+            switch (fight[i]) {
+                case 'w':
+                    result += 4; break;
+                case 'p':
+                    result += 3; break;
+                case 'b':
+                    result += 2; break;
+                case 's':
+                    result += 1; break;
+                case 'm':
+                    result -= 4; break;
+                case 'q':
+                    result -= 3; break;
+                case 'd':
+                    result -= 2; break;
+                case 'z':
+                    result -= 1; break;
+            }
+        }
+    }
+    
+    return result > 0 ? "Left side wins!" : result < 0 ? "Right side wins!" : "Let's fight again!";
 }

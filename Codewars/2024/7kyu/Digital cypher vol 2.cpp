@@ -29,3 +29,56 @@
  * decode([ 20, 12, 18, 30, 21],1939);  ==> "scout"
  * decode([ 14, 10, 22, 29, 6, 27, 19, 18, 6, 12, 8],1939);  ==>  "masterpiece"
  */
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Kata {
+  public:
+	  static string Decode(vector<int> code, int n)
+	  {
+      string encoding = " abcdefghijklmnopqrstuvwxyz";
+      string output = "";     
+      vector<int> digits;
+      size_t count = 0;
+    
+      while (n > 0) {
+        digits.push_back(n % 10);
+        n /= 10;
+        count += 1;
+      }
+      
+      reverse(digits.begin(), digits.end());
+    
+      for (size_t i = 0, j = 0; i < code.size(); ++i) {
+        code[i] -= digits[j];
+        output.push_back(encoding[code[i]]);
+      
+        if (j + 1 == count)
+          j = 0;
+        else
+          ++j;
+      }
+    
+		  return output;
+	  }
+};
+
+// ALTERNATIVE
+using namespace std;
+class Kata {
+  public:
+	  static string Decode(vector<int> code, int n) {     
+      std::string key = std::to_string(n);
+   
+      std::string result; 
+      result.resize(code.size());
+
+      for (auto i = 0; i < code.size(); ++i)
+        result[i] = 'a' + code[i] - 1 - key[i % key.size()] + '0';
+        
+		  return result;
+	  }
+};

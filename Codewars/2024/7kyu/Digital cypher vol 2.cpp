@@ -37,8 +37,7 @@ using namespace std;
 
 class Kata {
   public:
-	  static string Decode(vector<int> code, int n)
-	  {
+    static string Decode(vector<int> code, int n) {
       string encoding = " abcdefghijklmnopqrstuvwxyz";
       string output = "";     
       vector<int> digits;
@@ -62,15 +61,15 @@ class Kata {
           ++j;
       }
     
-		  return output;
-	  }
+      return output;
+    }
 };
 
 // ALTERNATIVE
 using namespace std;
 class Kata {
   public:
-	  static string Decode(vector<int> code, int n) {     
+    static string Decode(vector<int> code, int n) {     
       std::string key = std::to_string(n);
    
       std::string result; 
@@ -79,6 +78,6 @@ class Kata {
       for (auto i = 0; i < code.size(); ++i)
         result[i] = 'a' + code[i] - 1 - key[i % key.size()] + '0';
         
-		  return result;
-	  }
+      return result;
+    }
 };

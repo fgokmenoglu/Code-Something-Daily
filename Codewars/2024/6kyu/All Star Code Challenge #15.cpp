@@ -13,3 +13,33 @@
  * The output array SHOULD be the same length as the input string. 
  * The function should return an empty array with a 0 length string, '', as input.
  */
+#include <string>
+#include <vector>
+
+std::vector<std::string> rotate(const std::string& s) {
+  std::string temp = s + s;
+  size_t len = s.length();
+  std::vector<std::string> out = {};
+  
+  for (size_t i = 0; i < len; ++i)
+    out.push_back(temp.substr(i + 1, len));  
+  
+  return out;
+}
+
+// ALTERNATIVE
+#include <string>
+#include <vector>
+#include <algorithm>
+
+std::vector<std::string> rotate(const std::string& s) {
+  std::vector<std::string> output;
+  std::string tempString{s};
+  
+  for(auto c : s) {
+    std::rotate(tempString.begin(), tempString.begin() + 1, tempString.end());
+    output.push_back(tempString);
+  }
+  
+  return output;
+}

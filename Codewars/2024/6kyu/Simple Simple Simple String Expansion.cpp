@@ -28,7 +28,21 @@ std::string string_expansion(const std::string& s) {
       count = s[i] - '0'; // Update the count when a digit is encountered
     else
       result.append(count, s[i]); // Append the character 'count' times
+      // ALTERNATIVE : result += string(s[i], count);
   }
   
   return result;
 }
+
+/*
+// STRING OBJECT CONSTRUCTORS
+default (1)	          --> string();
+copy (2)	            --> string (const string& str);
+substring (3)	        --> string (const string& str, size_t pos, size_t len = npos);
+from c-string (4)     -->	string (const char* s);
+from buffer (5)	      --> string (const char* s, size_t n);
+fill (6)              -->	string (size_t n, char c);
+range (7)             -->	template <class InputIterator>  string  (InputIterator first, InputIterator last);
+initializer list (8)  -->	string (initializer_list<char> il);
+move (9)              -->	string (string&& str) noexcept;
+*/

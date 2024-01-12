@@ -10,5 +10,7 @@
  * Absence of a node will be indicated with a null value.
 */
 int sumTheTreeValues(node* root) {
-  // Put the magic here
+  if (root == nullptr) return 0;
+ 
+  return root -> value + sumTheTreeValues(root -> left) + sumTheTreeValues(root -> right);
 }

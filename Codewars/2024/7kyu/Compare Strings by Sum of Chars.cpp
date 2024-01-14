@@ -46,3 +46,21 @@ bool compare(std::string s1, std::string s2) {
     
   return sum1 == sum2;
 }
+
+// ALTERNATIVE
+int charvalue(std::string s) {
+  int sum = 0;
+
+  for (char &c : s) {
+    if(!std::isalpha(c))
+      return 0;
+    
+    sum += std::toupper(c);
+  }
+  
+  return sum;
+}
+
+bool compare(std::string s1, std::string s2) {
+    return charvalue(s1) == charvalue(s2);
+}

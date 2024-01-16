@@ -23,24 +23,28 @@
  * The solution to the example above should therefore appear like '1, 2: Bob made "Jeff" proud!'.
  */
 #include <vector>
-#include <algorithm>
 #include <string>
 
 using namespace std;
 
 string solve_rock_off(const vector<int> &alice, const vector<int> &bob) {
-  string out = "";
-  int i = 0, j = 0;
-  
-  auto countAlice = std::count_if(alice.begin(), alice.end(), [&]() { return alice[i] > bob.[i++]; });
-  auto countBob = std::count_if(alice.begin(), alice.end(), [&]() { return alice[j] > bob.[j++]; });
-  
-  if (countAlice > countBob)
-    out = to_string(countAlice) + ", " + to_string(countBob) + "Alice made \"Kurt\" proud!";
-  else if (countBob > countAlice)
-    out = to_string(countAlice) + ", " + to_string(countBob) + "Bob made \"Jeff\" proud!";
-  else
-    out = to_string(countAlice) + ", " + to_string(countBob) + "that looks like a \"draw\"! Rock on!";
-  
-  return out;
+    int scoreAlice = 0, scoreBob = 0;
+    
+    for (size_t i = 0; i < alice.size(); ++i) {
+        if (alice[i] > bob[i]) {
+            ++scoreAlice;
+        } else if (bob[i] > alice[i]) {
+            ++scoreBob;
+        }
+    }
+
+    string out = to_string(scoreAlice) + ", " + to_string(scoreBob) + ": ";
+    if (scoreAlice > scoreBob)
+        out += "Alice made \"Kurt\" proud!";
+    else if (scoreBob > scoreAlice)
+        out += "Bob made \"Jeff\" proud!";
+    else
+        out += "that looks like a \"draw\"! Rock on!";
+    
+    return out;
 }

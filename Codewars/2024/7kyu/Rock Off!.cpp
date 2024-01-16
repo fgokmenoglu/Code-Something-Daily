@@ -22,3 +22,25 @@
  *
  * The solution to the example above should therefore appear like '1, 2: Bob made "Jeff" proud!'.
  */
+#include <vector>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+string solve_rock_off(const vector<int> &alice, const vector<int> &bob) {
+  string out = "";
+  int i = 0, j = 0;
+  
+  auto countAlice = std::count_if(alice.begin(), alice.end(), [&]() { return alice[i] > bob.[i++]; });
+  auto countBob = std::count_if(alice.begin(), alice.end(), [&]() { return alice[j] > bob.[j++]; });
+  
+  if (countAlice > countBob)
+    out = to_string(countAlice) + ", " + to_string(countBob) + "Alice made \"Kurt\" proud!";
+  else if (countBob > countAlice)
+    out = to_string(countAlice) + ", " + to_string(countBob) + "Bob made \"Jeff\" proud!";
+  else
+    out = to_string(countAlice) + ", " + to_string(countBob) + "that looks like a \"draw\"! Rock on!";
+  
+  return out;
+}

@@ -23,7 +23,28 @@
  * 8. Coke
  */
 #include <string>
+#include <vector>
+#include <algorithm>
 
 std::string get_order(const std::string &order) {
-  return
+    std::vector<std::string> menu = {"Burger", "Fries", "Chicken", "Pizza", "Sandwich", "Onionrings", "Milkshake", "Coke"};
+    std::string formattedOrder;
+    std::string lowerOrder = order;
+    std::transform(lowerOrder.begin(), lowerOrder.end(), lowerOrder.begin(), ::tolower);
+
+    for (const auto& item : menu) {
+        std::string lowerItem = item;
+        std::transform(lowerItem.begin(), lowerItem.end(), lowerItem.begin(), ::tolower);
+        std::size_t start = 0;
+      
+        while ((start = lowerOrder.find(lowerItem, start)) != std::string::npos) {
+            formattedOrder += item + " ";
+            start += lowerItem.length();
+        }
+    }
+
+    if (!formattedOrder.empty())
+        formattedOrder.pop_back();
+    
+    return formattedOrder;
 }

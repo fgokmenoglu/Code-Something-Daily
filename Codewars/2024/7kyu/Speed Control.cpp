@@ -21,16 +21,19 @@
 class GpsSpeed {
   public:
     static int gps(int s, std::vector<double> &x) {
+      if (x.size() <= 1)
+        return 0;
+        
       int maxAvgSpeed = 0;
       
       for (size_t i = 0; i < x.size() - 1; ++i) {
         double sectionDistance = x[i + 1] - x[i];
-        double avgSpeed = floor(3600 * sectionDistance / s);
+        double avgSpeed = 3600 * sectionDistance / s;
           
         if (avgSpeed > maxAvgSpeed)
           maxAvgSpeed = avgSpeed;
       }
         
-      return maxAvgSpeed;
+      return floor(maxAvgSpeed);
     }
 };

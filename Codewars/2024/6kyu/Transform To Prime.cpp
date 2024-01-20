@@ -14,3 +14,35 @@
  * Since , the sum of the list's elements equal to (6) , the minimum number to be inserted to transform the sum to prime number is (1), 
  * which will make the sum of the List equal the closest prime number (7) .
  */
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+bool isPrime (int num) {
+  if (num == 1)
+    return false;
+  
+  int i = 2;
+  
+  while (i * i < num) {
+    if (num % i == 0)
+      return false;
+    
+    ++i;
+  }
+  
+  return true;
+}
+
+int minimumNumber (vector <int> numbers) {
+  auto sum = std::reduce(numbers.begin(), numbers.end());
+  auto temp = sum;
+  
+  while (true) {
+    if (isPrime(temp))  
+      return temp - sum;
+    
+    ++temp;
+  }
+}

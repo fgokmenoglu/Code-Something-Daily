@@ -26,14 +26,36 @@
  */
 #include <string>
 #include <vector>
+#include <cmath> // For std::ceil
 
 using namespace std;
 
 class Wallpaper {
   public:
     static string wallPaper(double l, double w, double h) {
-      string out = "";
-      
-      return out;
+        // Array of numbers in words
+        vector<string> numbers = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", 
+                                  "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", 
+                                  "sixteen", "seventeen", "eighteen", "nineteen", "twenty"};
+
+        // Check for zero values
+        if (l == 0 || w == 0 || h == 0) return numbers[0];
+
+        // Calculate the total area to cover
+        double totalArea = 2 * (l * h + w * h);
+
+        // Roll dimensions in meters
+        double rollWidth = 0.52; // 52 cm in meters
+        double rollLength = 10; // Length of the roll in meters
+
+        // Area covered by one roll
+        double rollArea = rollWidth * rollLength;
+
+        // Total rolls needed, including 15% extra
+        int totalRolls = ceil((totalArea * 1.15) / rollArea);
+
+        // Return the number in words
+        return totalRolls > 20 ? "more than twenty" : numbers[totalRolls];
     }
 };
+

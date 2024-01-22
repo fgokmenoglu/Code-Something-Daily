@@ -45,3 +45,85 @@
  * TASK 6: Create the function perfect_score() with parameters student_scores and student_names. 
  * The lists are the same as in task 5. The function should return the first <name> (as a string) of the student who scored 100 on the exam.
  */
+#include <array>
+#include <string>
+#include <vector>
+
+// Round down all provided student scores.
+std::vector<int> round_down_scores(std::vector<double> student_scores) {
+    // TODO: Implement round_down_scores
+    std::vector<int> out = {};
+
+    for (size_t i = 0; i < student_scores.size(); ++i)
+        out.emplace_back(static_cast<int>(student_scores[i]));
+    
+    return out;
+}
+
+
+// Count the number of failing students out of the group provided.
+int count_failed_students(std::vector<int> student_scores) {
+    // TODO: Implement count_failed_students
+    int countFailed = 0;
+
+    for (size_t i = 0; i < student_scores.size(); ++i)
+        if (student_scores[i] <= 40)
+            countFailed += 1;
+    
+    return countFailed;
+}
+
+// Determine how many of the provided student scores were 'the best' based on the provided threshold.
+std::vector<int> above_threshold(std::vector<int> student_scores, int threshold) {
+    // TODO: Implement above_threshold
+    std::vector<int> out = {};
+
+    for (size_t i = 0; i < student_scores.size(); ++i)
+        if (student_scores[i] >= threshold)
+            out.emplace_back(student_scores[i]);
+    
+    return out;
+}
+
+// Create a list of grade thresholds based on the provided highest grade.
+std::array<int, 4> letter_grades(int highest_score) {
+    // TODO: Implement letter_grades
+    std::array<int, 4> thresholds;
+    int range = highest_score - 40;
+    int interval = range / 4;
+
+    for (int i = 0; i < 4; ++i) {
+        thresholds[i] = 41 + i * interval;
+    }
+
+    return thresholds;
+}
+
+// Organize the student's rank, name, and grade information in ascending order.
+std::vector<std::string> student_ranking(std::vector<int> student_scores, std::vector<std::string> student_names) {
+    // TODO: Implement student_ranking
+    std::vector<std::string> out = {};
+    std::string temp = "";
+
+    for (size_t i = 0; i < student_scores.size(); ++i) {
+        temp = std::to_string(i + 1) + ". " + student_names[i] + ": " + std::to_string(student_scores[i]);
+        out.emplace_back(temp);
+    }
+    
+    return out;
+}
+
+// Create a string that contains the name of the first student to make a perfect score on the exam.
+std::string perfect_score(std::vector<int> student_scores, std::vector<std::string> student_names) {
+    // TODO: Implement perfect_score
+    std::string out = "";
+
+    for (size_t i = 0; i < student_scores.size(); ++i) {
+        if (student_scores[i] == 100) {
+            out = student_names[i];
+            break;
+        }
+    }
+    
+    return out;
+}

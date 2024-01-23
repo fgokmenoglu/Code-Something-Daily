@@ -28,7 +28,8 @@
 #include <iomanip>
 
 std::string hist(const std::string &s) {
-    std::stringstream out;
+    std::string out = "";
+    std::stringstream temp;
 
     int u_count = std::count(s.begin(), s.end(), 'u');
     int w_count = std::count(s.begin(), s.end(), 'w'); 
@@ -36,17 +37,20 @@ std::string hist(const std::string &s) {
     int z_count = std::count(s.begin(), s.end(), 'z');
 
     if (u_count > 0) {
-        out << std::left << std::setw(2) << 'u' << ' ' << std::setw(6) << u_count << std::string(u_count, '*') << "\r";
+        temp << std::left << std::setw(2) << 'u' << ' ' << std::setw(6) << u_count << std::string(u_count, '*') << "\\r";
     }
     if (w_count > 0) {
-        out << std::left << std::setw(2) << 'w' << ' ' << std::setw(6) << w_count << std::string(w_count, '*') << "\r";
+        temp << std::left << std::setw(2) << 'w' << ' ' << std::setw(6) << w_count << std::string(w_count, '*') << "\\r";
     }
     if (x_count > 0) {
-        out << std::left << std::setw(2) << 'x' << ' ' << std::setw(6) << x_count << std::string(x_count, '*') << "\r";
+        temp << std::left << std::setw(2) << 'x' << ' ' << std::setw(6) << x_count << std::string(x_count, '*') << "\\r";
     }
     if (z_count > 0) {
-        out << std::left << std::setw(2) << 'z' << ' ' << std::setw(6) << z_count << std::string(z_count, '*') << "\r";
+        temp << std::left << std::setw(2) << 'z' << ' ' << std::setw(6) << z_count << std::string(z_count, '*') << "\\r";
     }
-  
-    return out.str();
+    
+    out = temp.str();
+    out = out.substr(0, out.length() - 2);
+    
+    return out;
 }

@@ -22,3 +22,31 @@
  * s="uuaaaxbbbbyyhwawiwjjjwwxymzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
  * hist(s) => "u..2.....**\rw..5.....*****\rx..2.....**\rz..31....*******************************"
  */
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include <iomanip>
+
+std::string hist(const std::string &s) {
+    std::stringstream out;
+
+    int u_count = std::count(s.begin(), s.end(), 'u');
+    int w_count = std::count(s.begin(), s.end(), 'w'); 
+    int x_count = std::count(s.begin(), s.end(), 'x'); 
+    int z_count = std::count(s.begin(), s.end(), 'z');
+
+    if (u_count > 0) {
+        out << std::left << std::setw(2) << 'u' << ' ' << std::setw(6) << u_count << std::string(u_count, '*') << "\r";
+    }
+    if (w_count > 0) {
+        out << std::left << std::setw(2) << 'w' << ' ' << std::setw(6) << w_count << std::string(w_count, '*') << "\r";
+    }
+    if (x_count > 0) {
+        out << std::left << std::setw(2) << 'x' << ' ' << std::setw(6) << x_count << std::string(x_count, '*') << "\r";
+    }
+    if (z_count > 0) {
+        out << std::left << std::setw(2) << 'z' << ' ' << std::setw(6) << z_count << std::string(z_count, '*') << "\r";
+    }
+  
+    return out.str();
+}

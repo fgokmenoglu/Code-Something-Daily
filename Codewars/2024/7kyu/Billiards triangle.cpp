@@ -1,5 +1,6 @@
 /*
- * Remember the triangle of balls in billiards? To build a classic triangle (5 levels) you need 15 balls. With 3 balls you can build a 2-level triangle, etc.
+ * Remember the triangle of balls in billiards? To build a classic triangle (5 levels) you need 15 balls. 
+ With 3 balls you can build a 2-level triangle, etc.
  *
  * For more examples,
  * pyramid(1) == 1

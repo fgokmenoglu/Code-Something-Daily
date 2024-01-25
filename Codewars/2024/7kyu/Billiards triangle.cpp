@@ -11,5 +11,27 @@
  * Write a function that takes number of balls (≥ 1) and calculates how many levels you can build a triangle.
  */
 int pyramid(int n) {
-    // Your solution goes here
+  int i = 1;
+  
+  while (true) {
+    n -= i;
+    
+    if (n < 0)
+      return i - 1;
+    
+    i += 1;
+  }
+}
+
+// ALTERNATIVE
+int pyramid(int n) {
+    int level = 0;
+    int totalBalls = 0;
+
+    while (totalBalls <= n) {
+        level++;
+        totalBalls = level * (level + 1) / 2;
+    }
+
+    return level - 1;
 }

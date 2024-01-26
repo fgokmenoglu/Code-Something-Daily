@@ -14,9 +14,46 @@
 #include <vector>
 
 template <typename T> std::vector<T> uniqueInOrder(const std::vector<T>& iterable) {
-  //your code here
+  std::vector<T> out{};
+  out.push_back(iterable[0]);
+  
+  for (size_t i = 1; i < iterable.size(); ++i)
+    if (iterable[i] != iterable[i - 1])
+      out.push_back(iterable[i]);
+  
+  return out;
 }
 
 std::vector<char> uniqueInOrder(const std::string& iterable) {
-  //your code here
+  if (iterable == "")
+    return {};
+  
+  std::vector<char> out{};
+  out.push_back(iterable[0]);
+  
+  for (size_t i = 1; i < iterable.size(); ++i)
+    if (iterable[i] != iterable[i - 1])
+      out.push_back(iterable[i]);
+  
+  return out;
+}
+
+// ALTERNATIVE
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
+using namespace std;
+
+template <typename T> std::vector<T> uniqueInOrder(const std::vector<T>& iterable) {
+    vector<T> res;
+    unique_copy(iterable.begin(), iterable.end(), std::back_inserter(res));
+    return res;
+}
+
+std::vector<char> uniqueInOrder(const std::string& iterable) {
+    vector<char> res;
+    unique_copy(iterable.begin(), iterable.end(), std::back_inserter(res));
+    return res;
 }

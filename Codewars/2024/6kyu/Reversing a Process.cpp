@@ -20,3 +20,23 @@
  * Note: Indeed it can happen that the decoding is impossible for strings composed of whatever letters from "a" to "z" 
  * when positive integer num has not been correctly chosen. In that case return "Impossible to decode".
  */
+#include <string>
+
+namespace process {
+  std::string decode(const std::string &r) {
+    size_t nonDigitPos = 0;
+
+    while (nonDigitPos < r.size() && std::isdigit(r[nonDigitPos]))
+        nonDigitPos++;
+    
+    int code = stoi(r.substr(0, nonDigitPos));
+    std::string toDecode = r.substr(nonDigitPos);
+    std::string letters = "abcdefghijklmnopqrstuvwxyz";
+    std::string out = "";
+    
+    for (size_t i = 0; i < toDecode.size(); ++i)
+      out.push_back(letters[letters.find(toDecode[i]) * code % 26]);
+    
+    return out == toDecode ? "Impossible to decode" : out;
+  }
+}

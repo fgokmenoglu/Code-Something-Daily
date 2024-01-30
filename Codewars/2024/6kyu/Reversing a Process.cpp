@@ -21,22 +21,40 @@
  * when positive integer num has not been correctly chosen. In that case return "Impossible to decode".
  */
 #include <string>
+#include <cctype> // for std::isdigit
 
 namespace process {
+  int modInverse(int a, int m) {
+    // Calculate the modular multiplicative inverse of 'a' modulo 'm'.
+    for (int x = 1; x < m; x++) {
+      if ((a * x) % m == 1) {
+        return x;
+      }
+    }
+    return -1; // No inverse exists if function returns -1.
+  }
+
   std::string decode(const std::string &r) {
     size_t nonDigitPos = 0;
 
+    // Extract the code and the encoded string.
     while (nonDigitPos < r.size() && std::isdigit(r[nonDigitPos]))
-        nonDigitPos++;
+      nonDigitPos++;
     
-    int code = stoi(r.substr(0, nonDigitPos));
+    int code = std::stoi(r.substr(0, nonDigitPos));
     std::string toDecode = r.substr(nonDigitPos);
-    std::string letters = "abcdefghijklmnopqrstuvwxyz";
+
+    int inverse = modInverse(code, 26);
+    if (inverse == -1) {
+      return "Impossible to decode"; // No inverse, so decoding is impossible.
+    }
+
     std::string out = "";
+    for (char encodedChar : toDecode) {
+      int originalPos = (inverse * (encodedChar - 'a')) % 26;
+      out.push_back('a' + originalPos);
+    }
     
-    for (size_t i = 0; i < toDecode.size(); ++i)
-      out.push_back(letters[letters.find(toDecode[i]) * code % 26]);
-    
-    return out == toDecode ? "Impossible to decode" : out;
+    return out;
   }
 }

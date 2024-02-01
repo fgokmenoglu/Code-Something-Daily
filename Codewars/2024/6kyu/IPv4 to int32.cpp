@@ -17,7 +17,39 @@
  */
 #include <cstdint>
 #include <string>
+#include <vector>
+#include <sstream>
+#include <bitset>
 
 uint32_t ip_to_int32(const std::string& ip) {
-    return 0;
+  std::vector<std::string> tokens;
+  std::string token;
+  std::istringstream tokenStream(ip);
+  
+  while (std::getline(tokenStream, token, '.'))
+    tokens.push_back(token);
+  
+  std::string out = "";
+  
+  for (std::string token : tokens) {
+    unsigned long long number = std::stoull(token);
+    std::string binaryString = std::bitset<8>(number).to_string();   
+    out += binaryString;
+  } 
+  
+  return std::bitset<32>(out).to_ullong();
+}
+
+// ALTERNATIVE
+uint32_t ip_to_int32(const std::string& ip) {
+    std::uint32_t ans {};
+    std::istringstream s {ip};
+    std::string octet {};
+    
+    while (std::getline(s, octet, '.')) {
+        ans <<= 8;
+        ans += std::stoi(octet);
+    }
+    
+    return ans;
 } 

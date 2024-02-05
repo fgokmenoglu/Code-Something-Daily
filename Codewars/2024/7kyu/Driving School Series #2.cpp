@@ -16,5 +16,24 @@
  * Input is always > 0.
  */
 unsigned cost(unsigned n) {
-  // your code
+    // Cost for the first hour
+    unsigned totalCost = 30;
+
+    if (n > 60) {
+        // Subtract the first hour and apply grace period
+        n -= 60;
+        if (n % 30 <= 5) {
+            // If within grace period, reduce the time to nearest half hour
+            n -= n % 30;
+        }
+
+        // Calculate additional cost
+        totalCost += (n / 30) * 10;
+        if (n % 30 > 0) {
+            // If there is a remainder, add cost for an extra half hour
+            totalCost += 10;
+        }
+    }
+
+    return totalCost;
 }

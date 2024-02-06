@@ -8,8 +8,9 @@
  * The most common file extension for header files is .h. Some projects use .hpp or skip the extension completely.
  * The definitions are located in a separate .cpp file. 
  * To reunite the parts, the source file starts by including the respective header file.
- * 
- * CLASSES AND HEADERS
+ */
+
+/* CLASSES AND HEADERS
  * Classes can become very complex and their relation to the header / source partition might be confusing. 
  * One possible layout is to keep all the implementation details in the source file and all the declarations and member variables in the header:
  */ 
@@ -45,4 +46,9 @@
  * When the header is used as an API overview, that is where a person would look for information like default values. 
  * The size parameter's default of the constructor is therefore handled in the header and not in the implementation. 
  * The definitions in the source file are prefixed with the namespace robots and the class type Flower.
+ */
+
+/*
+ * #ifndef (ending with #endif) is called an include guard. 
+ * It ensures that the content of the file is included only once during the compilation to avoid errors.
  */

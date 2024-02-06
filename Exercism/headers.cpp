@@ -52,3 +52,92 @@
  * #ifndef (ending with #endif) is called an include guard. 
  * It ensures that the content of the file is included only once during the compilation to avoid errors.
  */
+
+// HEADER FILE
+#ifndef DOCTOR_DATA_H
+#define DOCTOR_DATA_H
+
+#include <string>
+
+namespace star_map {
+    enum class System {
+        Sol,
+        BetaHydri,
+        EpsilonEridani,
+        AlphaCentauri,
+        DeltaEridani,
+        Omicron2Eridani
+        // Other systems can be added here.
+    };
+}
+
+namespace heaven {
+    class Vessel {
+    public:
+        // Constructor
+        Vessel(const std::string& name, int gen, star_map::System sys = star_map::System::Sol);
+
+        // Getter for name
+        std::string get_name() const;
+
+        // Member function
+        Vessel replicate(const std::string& new_name) const;
+
+        // Functions to manage busters
+        void make_buster();
+        bool shoot_buster();
+
+        // Public member variables
+        std::string name;
+        star_map::System current_system;
+        int generation;
+        int busters;
+
+    private:
+        // Any private member variables can be added here.
+    };
+
+    // Non-member functions
+    std::string get_older_bob(const Vessel& v1, const Vessel& v2);
+    bool in_the_same_system(const Vessel& v1, const Vessel& v2);
+}
+
+#endif // DOCTOR_DATA_H
+
+// SOURCE FILE
+#include "doctor_data.h"
+
+namespace heaven {
+
+    Vessel::Vessel(const std::string& name, int gen, star_map::System sys) 
+        : name(name), current_system(sys), generation(gen), busters(0) {
+    }
+
+    std::string Vessel::get_name() const {
+        return name;
+    }
+
+    Vessel Vessel::replicate(const std::string& new_name) const {
+        return Vessel(new_name, this->generation + 1, this->current_system);
+    }
+
+    void Vessel::make_buster() {
+        busters++;
+    }
+
+    bool Vessel::shoot_buster() {
+        if (busters > 0) {
+            busters--;
+            return true;
+        }
+        return false;
+    }
+
+    std::string get_older_bob(const Vessel& v1, const Vessel& v2) {
+        return (v1.generation < v2.generation) ? v1.get_name() : v2.get_name();
+    }
+
+    bool in_the_same_system(const Vessel& v1, const Vessel& v2) {
+        return v1.current_system == v2.current_system;
+    }
+}

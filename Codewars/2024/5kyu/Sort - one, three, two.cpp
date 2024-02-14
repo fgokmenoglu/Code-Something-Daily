@@ -18,3 +18,13 @@
  * e.g. "one hundred one", "one hundred two"; is same order as "one hundred and one", "one hundred and two"
  * e.g. "ninety eight", "ninety nine"; is same order as "ninety-eight", "ninety-nine"
  */
+#include <vector>
+
+using namespace std;
+
+class Dinglemouse {
+  public:
+    static vector<int> sort(const vector<int> &array) {
+        return {}; // Do your magic!
+    }
+};

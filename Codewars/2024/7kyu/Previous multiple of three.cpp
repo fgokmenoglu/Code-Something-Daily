@@ -12,6 +12,9 @@
  * 1244   => 12
  * 952406 => 9
  */
-int prev_mult_of_three (int n) {
-  return -1;
+int prev_mult_of_three(int n) {
+  while (n % 3 != 0)
+    n /= 10;
+  
+  return n == 0 ? -1 : n;
 }

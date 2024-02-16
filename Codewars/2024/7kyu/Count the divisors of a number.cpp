@@ -11,6 +11,12 @@
  * Note you should only return a number, the count of divisors. 
  * The numbers between parentheses are shown only for you to see which numbers are counted in each case.
  */
-int divisors(int n) {  
-  return 0;
+int divisors(int n) {
+  int divCnt = 1;
+  
+  for (int i = 1; i <= n / 2; ++i)
+    if (n % i == 0)
+      ++divCnt;
+      
+  return divCnt;
 }

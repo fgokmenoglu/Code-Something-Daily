@@ -32,5 +32,14 @@
 
 template <class F>
 auto calc(std::int64_t n, F f) -> std::int64_t {
-  // Your Code
+    std::int64_t out = 0;
+  
+    for (std::int64_t i = 1; i <= n;) {
+        std::int64_t quotient = n / i;
+        std::int64_t next_i = n / quotient + 1; // Compute the next value of i where floor(n/i) changes
+        out += f(quotient) * (next_i - i); // Multiply the function value by the number of times it repeats
+        i = next_i; // Jump to the next i
+    }
+  
+    return out;
 }

@@ -5,3 +5,11 @@
  * invert([1,-2,3,-4,5]) == [-1,2,-3,4,-5]
  * invert([]) == []
  */
+#include <vector>
+#include <algorithm>
+#include <functional>
+
+std::vector<int> invert(std::vector<int> values) {
+    return std::transform(values.begin(), values.end(), values.begin(),
+               std::bind(std::multiplies<int>(), std::placeholders::_1, -1));;
+}

@@ -7,9 +7,9 @@
  */
 #include <vector>
 #include <algorithm>
-#include <functional>
 
 std::vector<int> invert(std::vector<int> values) {
-    return std::transform(values.begin(), values.end(), values.begin(),
-               std::bind(std::multiplies<int>(), std::placeholders::_1, -1));;
+    std::transform(values.begin(), values.end(), values.begin(), [](int n) { return -n; });
+  
+    return values;
 }

@@ -19,3 +19,20 @@
  *
  * N.B. If your solution passes all fixed tests but fails at the random tests, make sure you aren't mutating the input array.
  */
+#include <vector>
+
+bool isAscOrder(std::vector<int> arr) { 
+  for (size_t i = 0; i < arr.size() - 1; ++i)
+    if (arr[i] >= arr[i + 1])
+      return false;
+  
+  return true;
+}
+
+// ALTERNATIVE
+#include <algorithm>
+#include <vector>
+
+bool isAscOrder(const std::vector<int>& v) {
+  return std::is_sorted(v.begin(), v.end());
+}

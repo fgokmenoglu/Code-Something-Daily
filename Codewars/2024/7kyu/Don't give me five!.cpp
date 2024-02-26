@@ -11,15 +11,28 @@
  * The start number will always be smaller than the end number. 
  * Both numbers can be also negative!
  */
-int dontGiveMeFive(int start, int end) {
-  int out = 0;
-  
-  for (int i = start; i <= end; ++i) {
-    out += 1;
-    
-    if ((i % 5 == 0) && (i % 10 != 0))
-      out -= 1;;
+#include <stdbool.h>
+
+bool containsFive(int number) {
+  if (number < 0)
+        number = -number; // Make the number positive for negative range
+
+  while (number > 0) {
+    if (number % 10 == 5)
+      return true; // Return true if any digit is '5'
+      
+    number /= 10; // Move to the next digit
   }
   
-  return out;
+  return false; // No digit is '5'
+}
+
+int dontGiveMeFive(int start, int end) {
+  int count = 0;
+  
+  for (int i = start; i <= end; ++i)
+    if (!containsFive(i))
+      count++;
+  
+  return count;
 }

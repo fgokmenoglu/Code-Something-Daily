@@ -30,5 +30,35 @@
 #include <cstdint>
 
 std::pair<uint64_t, uint64_t> orAnd(uint64_t A, uint64_t B) {
-  // your code here
+    if (A == B) return {A, A};
+
+    uint64_t orResult = A, andResult = A;
+
+    // Find the most significant bit where A and B differ
+    uint64_t diffBit = 0;
+    for (uint64_t bit = 1ULL << 63; bit > 0; bit >>= 1) {
+        if ((A & bit) != (B & bit)) {
+            diffBit = bit;
+            break;
+        }
+    }
+
+    // Set all less significant bits to 1 in orResult
+    orResult |= diffBit - 1;
+
+    // Calculate AND result
+    for (uint64_t bit = diffBit; bit > 0; bit >>= 1) {
+        if ((B & bit) != 0 && (A & bit) == 0) {
+            andResult &= ~bit;
+            while (bit >>= 1) {
+                andResult &= ~bit;
+            }
+            break;
+        }
+    }
+
+    // Adjust orResult to include differing bits between A and B
+    orResult |= (A & B) | diffBit;
+
+    return {orResult, andResult};
 }

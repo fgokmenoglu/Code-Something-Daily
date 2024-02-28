@@ -26,5 +26,21 @@
 
 class PartList {
 public:
-  static std::vector<std::pair <std::string, std::string>> partlist(std::vector<std::string> &arr);
+  static std::vector<std::pair<std::string, std::string>> partlist(std::vector<std::string> &arr) {
+    std::vector<std::pair<std::string, std::string>> out;
+    
+    for (size_t i = 1; i < arr.size(); ++i) {
+      std::string firstPart, secondPart;
+      
+      for (size_t j = 0; j < i; ++j)
+        firstPart += (j > 0 ? " " : "") + arr[j];
+
+      for (size_t j = i; j < arr.size(); ++j)
+        secondPart += (j > i ? " " : "") + arr[j];
+
+      out.push_back(std::make_pair(firstPart, secondPart));
+    }
+    
+    return out;
+  }
 };

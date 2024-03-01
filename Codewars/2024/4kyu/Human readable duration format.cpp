@@ -29,7 +29,42 @@
  * Formally, the duration specified by of a component must not be greater than any valid more significant unit of time.
  */
 #include <string>
+#include <vector>
 
 std::string format_duration(int seconds) {
-  // your code here
+    if (seconds == 0) return "now";
+
+    // Constants for time conversion
+    const int seconds_per_minute = 60;
+    const int seconds_per_hour = 3600;
+    const int seconds_per_day = 86400;
+    const int seconds_per_year = 31536000;
+
+    // Variables to store time components
+    int years = seconds / seconds_per_year;
+    seconds %= seconds_per_year;
+    int days = seconds / seconds_per_day;
+    seconds %= seconds_per_day;
+    int hours = seconds / seconds_per_hour;
+    seconds %= seconds_per_hour;
+    int minutes = seconds / seconds_per_minute;
+    seconds %= seconds_per_minute;
+
+    // Building the output string
+    std::vector<std::string> parts;
+    if (years > 0)   parts.push_back(std::to_string(years) + " year" + (years > 1 ? "s" : ""));
+    if (days > 0)    parts.push_back(std::to_string(days) + " day" + (days > 1 ? "s" : ""));
+    if (hours > 0)   parts.push_back(std::to_string(hours) + " hour" + (hours > 1 ? "s" : ""));
+    if (minutes > 0) parts.push_back(std::to_string(minutes) + " minute" + (minutes > 1 ? "s" : ""));
+    if (seconds > 0) parts.push_back(std::to_string(seconds) + " second" + (seconds > 1 ? "s" : ""));
+
+    std::string result;
+    for (size_t i = 0; i < parts.size(); ++i) {
+        if (i > 0) {
+            result += i == parts.size() - 1 ? " and " : ", ";
+        }
+        result += parts[i];
+    }
+
+    return result;
 }

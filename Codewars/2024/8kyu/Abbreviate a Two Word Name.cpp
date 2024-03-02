@@ -27,11 +27,11 @@ std::string abbrevName(std::string name) {
 #include <cctype>
 
 std::string abbrevName(std::string name) {
-  std::string ret;
+  std::string out = "";
   
-  ret.push_back(toupper(name[0]));
-  ret.push_back('.');
-  ret.push_back(toupper(name[name.find(' ') + 1] ));
+  out += toupper(name[0]);
+  out += '.';
+  out += toupper(name[name.find(' ') + 1]);
   
-  return ret;
+  return out;
 }

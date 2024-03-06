@@ -16,8 +16,30 @@
  */
 #include <utility>
 #include <vector>
+#include <cmath>
 
 class SumSquaredDivisors {
-  public:
-    static std::vector<std::pair<long long, long long>> listSquared(long long m, long long n);
+public:
+    static std::vector<std::pair<long long, long long>> listSquared(long long m, long long n) {
+        std::vector<std::pair<long long, long long>> result;
+
+        for (long long i = m; i <= n; ++i) {
+            long long sum = 0;
+            for (long long j = 1; j * j <= i; ++j) {
+                if (i % j == 0) {
+                    sum += j * j;
+                    if (j * j != i) {
+                        sum += (i / j) * (i / j);
+                    }
+                }
+            }
+
+            long long sqrRoot = static_cast<long long>(sqrt(sum));
+            if (sqrRoot * sqrRoot == sum) {
+                result.push_back({i, sum});
+            }
+        }
+
+        return result;
+    }
 };

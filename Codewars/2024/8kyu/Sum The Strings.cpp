@@ -15,8 +15,8 @@
 #include <string>
 
 std::string sum_str(const std::string& a, const std::string& b) {
-    int num_a = std::stoi(a);
-    int num_b = std::stoi(b);
+    int num_a = a == "" ? 0 : std::stoi(a);
+    int num_b = b == "" ? 0 : std::stoi(b);
   
     return std::to_string(num_a + num_b);
 }

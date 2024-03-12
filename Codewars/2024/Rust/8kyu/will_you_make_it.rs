@@ -6,10 +6,5 @@
  * Function should return true if it is possible and false if not.
  */
 fn zero_fuel(distance_to_pump: u32, mpg: u32, gallons: u32) -> bool {
-    if distance_to_pump >= mpg * gallons {
-        true
-    }
-    else {
-        false
-    }
+    mpg * gallons >= distance_to_pump
 }

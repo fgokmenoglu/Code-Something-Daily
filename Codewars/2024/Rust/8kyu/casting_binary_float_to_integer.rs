@@ -9,5 +9,9 @@
  */
 // return binary representation as i32
 pub fn convert_to_i32(f: f32) -> i32 {
-    // TODO
+    // Convert the float to its bit representation as u32
+    let bits = f.to_bits();
+    
+    // Transmute the bits to i32
+    bits as i32
 }

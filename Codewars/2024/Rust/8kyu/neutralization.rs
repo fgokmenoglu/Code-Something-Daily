@@ -18,5 +18,11 @@
  * The two strings will be the same length.
  */
 fn neutralise(s1: &str, s2: &str) -> String {
-    todo!()
+    s1.chars().zip(s2.chars()).map(|(char1, char2)| {
+        match (char1, char2) {
+            ('+', '+') | ('-', '-') => char1,
+            _ => '0',
+        }
+    }).collect()
 }
+

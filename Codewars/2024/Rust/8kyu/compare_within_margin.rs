@@ -13,7 +13,9 @@
  * Assume: margin >= 0
  * Tip: Some languages have a way to make parameters optional.
  */
-fn close_compare(a: f64, b: f64, margin: f64) -> i8 {
+fn close_compare(a: f64, b: f64, margin: Option<f64>) -> i8 {
+    let margin = margin.unwrap_or(0.0); // default margin is 0.0
+
     if (a - b).abs() <= margin {
         0
     } else if a < b {
@@ -22,3 +24,4 @@ fn close_compare(a: f64, b: f64, margin: f64) -> i8 {
         1
     }
 }
+

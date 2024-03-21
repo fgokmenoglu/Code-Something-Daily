@@ -8,3 +8,13 @@
 fn last<T: Clone>(slice: &[T]) -> T {
     slice.last().unwrap().clone()
 }
+
+// ALTERNATIVE
+fn last<T: Clone>(slice: &[T]) -> T {
+  let l = slice.last();
+    
+  match l {
+    None => panic!("empty"),
+    Some(x) => x.clone(),
+  }
+}

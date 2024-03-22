@@ -7,5 +7,19 @@
  * "ant" -> true (all characters are in alphabetical order)
  */
 fn alphabetic(s: &str) -> bool {
-    todo!()
+    let mut chars = s.chars();
+    let mut prev_char = match chars.next() {
+        Some(c) => c,
+        None => return true, // An empty string is technically in alphabetical order
+    };
+
+    for c in chars {
+        if c < prev_char {
+            return false;
+        }
+        prev_char = c;
+    }
+
+    true
 }
+

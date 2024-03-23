@@ -13,3 +13,8 @@
 fn power_of_two(x: u64) -> bool {
   x != 0 && (x & (x - 1)) == 0
 }
+
+// ALTERNATIVE
+fn power_of_two(x: u64) -> bool {
+    x.is_power_of_two()
+}

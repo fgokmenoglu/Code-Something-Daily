@@ -33,5 +33,28 @@
  */
 class ColorChoice {
   public:
-    static long long checkChoose(long long m, int n);
-};
+    static long long checkChoose(long long m, int n) {
+      if (m == 1) {
+        return 0; // Special case: choosing 0 out of n always results in 1 combination
+      }
+  
+      for (int x = 1; x <= n; x++) {
+        long long combinations = 1;
+        
+        for (int i = 0; i < x; ++i) {
+          combinations *= (n - i);
+          combinations /= (i + 1);
+          
+          if (combinations > m) {
+            break; // Early exit if combinations exceed m
+          } 
+        }
+        
+        if (combinations == m) {
+          return x;
+        }
+      }
+      
+      return -1;
+    }
+  };

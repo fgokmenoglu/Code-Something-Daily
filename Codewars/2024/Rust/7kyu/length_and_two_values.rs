@@ -7,5 +7,18 @@
  * 0, "one", "two"    -->  []
  */
 fn alternate<'a>(n: usize, first_value: &'a str, second_value: &'a str) -> Vec<&'a str> {
-    todo!()
+    let mut result = Vec::with_capacity(n);
+    for i in 0..n {
+        if i % 2 == 0 {
+            result.push(first_value);
+        } else {
+            result.push(second_value);
+        }
+    }
+    result
+}
+
+// ALTERNATIVE
+fn alternate<'a>(n: usize, v1: &'a str, v2: &'a str) -> Vec<&'a str> {
+    [v1, v2].iter().cycle().copied().take(n).collect()
 }

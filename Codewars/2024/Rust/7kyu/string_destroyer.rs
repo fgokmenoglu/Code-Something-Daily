@@ -32,5 +32,22 @@
 use std::collections::HashSet;
 
 fn destroy(input_sets: Vec<HashSet<char>>) -> String {
-    // your code here
+    let alphabet = "a b c d e f g h i j k l m n o p q r s t u v w x y z";
+
+    // Create a single combined set with all characters from the input sets.
+    let mut combined_set = HashSet::new();
+    for set in input_sets {
+        for &ch in set.iter() {
+            combined_set.insert(ch);
+        }
+    }
+
+    // Use `map` to replace matched characters with '_' and `collect` into a String.
+    alphabet.chars().map(|ch| {
+        if ch.is_alphabetic() && combined_set.contains(&ch) {
+            '_'
+        } else {
+            ch
+        }
+    }).collect::<String>()  // Convert the iterator of characters into a String.
 }

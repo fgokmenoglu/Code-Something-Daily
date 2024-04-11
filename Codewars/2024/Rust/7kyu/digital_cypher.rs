@@ -34,6 +34,34 @@
  * Encode("scout",1939);  ==>  [ 20, 12, 18, 30, 21]
  * Encode("masterpiece",1939);  ==>  [ 14, 10, 22, 29, 6, 27, 19, 18, 6, 12, 8]
  */
+fn encode(msg: String, key: i32) -> Vec<i32> {
+    // Convert key into a vector of digits
+    let mut key_digits = Vec::new();
+    let mut temp_key = key;
+    
+    while temp_key > 0 {
+        key_digits.push(temp_key % 10);
+        temp_key /= 10;
+    }
+    
+    key_digits.reverse();
+
+    // Encode each character
+    msg.chars()
+       .enumerate()
+       .map(|(i, c)| {
+           // Convert character to number (assuming 'a' is 1, 'b' is 2, etc.)
+           let char_num = c as i32 - 'a' as i32 + 1;
+           // Add the corresponding key digit, cycling through the key
+           char_num + key_digits[i % key_digits.len()]
+       })
+       .collect()
+}
+
+// ALTERNATIVE
 fn encode(msg: String, n: i32) -> Vec<i32> {
-    Vec::new()
+    msg.chars()
+        .zip(n.to_string().chars().cycle())
+        .map(|(a, b)| a as i32 + b as i32 - 'a' as i32 - '1' as i32 + 2)
+        .collect()
 }

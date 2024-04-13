@@ -14,7 +14,28 @@
  * tankvol(60,120,3500) should return 1750
  * tankvol(80,120,3500) should return 2478 (calculation gives about: 2478.73007973)
  */
+#include <cmath> // Include cmath for math functions
+
 class VolTank {
-  public:
-    static int tankVol(int h, int d, int vt);
+public:
+    static int tankVol(int h, int d, int vt) {
+        double R = d / 2.0;
+        double L = vt / (M_PI * R * R);
+        double area;
+
+        if (h == 0) {
+            return 0; // If no liquid, volume is 0
+        } else if (h == d) {
+            return vt; // If completely full, volume is total volume
+        } else {
+            // Calculate the area of the circular segment
+            double term1 = R * R * acos((R - h) / R);
+            double term2 = (R - h) * sqrt(2 * R * h - h * h);
+            area = term1 - term2;
+        }
+        // Calculate the volume of liquid and truncate to nearest integer
+        double volume = L * area;
+        return static_cast<int>(floor(volume));
+    }
 };
+

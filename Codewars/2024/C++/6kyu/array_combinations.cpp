@@ -12,7 +12,33 @@
  * since the extra outcomes are just duplicates.
  */
 #include <vector>
+#include <unordered_set>
 
 int solve(const std::vector<std::vector<int>> &data) {
-    return 0; // your code here
+    // To store the number of unique combinations
+    int num_combinations = 1;
+    
+    // Iterate through each subarray in the given data
+    for (const auto &subarray : data) {
+        // Use a set to remove duplicate elements
+        std::unordered_set<int> unique_elements(subarray.begin(), subarray.end());
+        
+        // Multiply the number of unique elements in each subarray to get the total combinations
+        num_combinations *= unique_elements.size();
+    }
+    
+    // Return the total number of unique combinations
+    return num_combinations;
+}
+
+// ALTERNATIVE
+#include <functional>
+#include <numeric>
+#include <unordered_set>
+#include <vector>
+
+int solve(const std::vector<std::vector<int>>& data) {
+  return std::transform_reduce(data.cbegin(), data.cend(), 1, std::multiplies(), [](const auto& xs) {
+    return std::unordered_set<int>(xs.cbegin(), xs.cend()).size();
+  });
 }

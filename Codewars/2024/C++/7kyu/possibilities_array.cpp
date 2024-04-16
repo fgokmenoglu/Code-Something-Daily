@@ -13,3 +13,20 @@
  * [0] => True
  * # Includes all numbers between 0 and a.length - 1 (1 - 1 = 0).
  */
+#include <vector>
+#include <unordered_set>
+
+bool isAllPossibilities(std::vector<int> arr){
+  if (arr.size() == 0)
+    return false;
+  
+  std::unordered_set<int> elements(arr.begin(), arr.end());
+
+  for (size_t i = 0; i < arr.size(); ++i) {
+    if (elements.find(i) == elements.end()) {
+      return false;
+    }
+  }
+
+  return true;
+}

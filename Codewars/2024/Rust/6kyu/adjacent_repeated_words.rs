@@ -20,5 +20,24 @@
  * "cat cat dog dog cat cat"  -->  3
  */
 fn count_adjacent_pairs(search_string: &str) -> usize {
+    let lowercased = search_string.to_lowercase();
+    let words = lowercased.split_whitespace().collect::<Vec<_>>();
 
+    let mut count = 0;
+    let mut prev_word = ""; // Initially, prev_word is a string literal, which is naturally a &'static str
+    let mut in_sequence = false;
+
+    for word in &words { // word is of type &&str because it's a reference to the items of the vector
+        if *word == prev_word { // Dereference word to match the type of prev_word
+            if !in_sequence {
+                in_sequence = true;
+                count += 1;
+            }
+        } else {
+            in_sequence = false;
+        }
+        prev_word = word; // Here word is a &&str so dereference it once to match &str
+    }
+
+    count
 }

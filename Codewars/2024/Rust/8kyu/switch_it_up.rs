@@ -16,6 +16,6 @@ fn switch_it_up(n: usize) -> &'static str {
         7 => "Seven",
         8 => "Eight",
         9 => "Nine",
-        _ => "Invalid number"  // Just in case, though not needed for 0-9 input
+        _ => panic!()
     }
 }

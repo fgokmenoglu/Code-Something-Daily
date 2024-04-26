@@ -8,7 +8,19 @@
  * "wicked .. !" --> 6
  * "!?..A" --> 1
  */
+#include <cctype>
+
 int countLettersAndDigits(std::string input) {
-    // TODO
-    return 0;
+    int out = 0;
+    
+    for (auto ch : input)
+        if (isalpha(ch) || isdigit(ch))
+          out += 1;
+  
+    return out;
+}
+
+// ALTERNATIVE
+int countLettersAndDigits(std::string input) {
+    return count_if(input.begin(), input.end(), isalnum);
 }

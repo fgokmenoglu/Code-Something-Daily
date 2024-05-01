@@ -10,7 +10,7 @@
  * "eightsix"           -->  "eight six"
  * "fivefourseven"      -->  "five four seven"
  * "ninethreesixthree"  -->  "nine three six three"
- * "fivethreefivesixthreenineonesevenoneeight"  -->  "five three five six three ni
+ * "fivethreefivesixthreenineonesevenoneeight"  -->  "five three five six three nine one seven one eight"
  */
 fn uncollapse(digits: &str) -> String {
     // English words for each digit

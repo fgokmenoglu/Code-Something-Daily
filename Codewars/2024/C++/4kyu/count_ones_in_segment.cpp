@@ -14,6 +14,24 @@
  * WARNING: Segment may contain billion elements, 
  * don't iterate through all numbers in the segment!
  */
-long long countOnes (int left, int right) {
-	return 0;
+// Function to count set bits from 0 to n
+long long countSetBitsFromZeroTo(long long n) {
+    if (n == 0) return 0;
+    
+    long long x = 0;
+  
+    while ((1LL << (x + 1)) <= n) {
+        ++x;
+    }
+    
+    long long till_2_pow_x_minus_1 = x * (1LL << (x - 1));
+    long long msb_2_pow_x_to_n = n - (1LL << x) + 1;
+    long long rest = n - (1LL << x);
+    
+    return till_2_pow_x_minus_1 + msb_2_pow_x_to_n + countSetBitsFromZeroTo(rest);
+}
+
+// Wrapper function to compute from left to right
+long long countOnes(int left, int right) {
+    return countSetBitsFromZeroTo(right) - (left > 0 ? countSetBitsFromZeroTo(left - 1) : 0);
 }

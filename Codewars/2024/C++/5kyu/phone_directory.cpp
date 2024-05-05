@@ -23,8 +23,52 @@
  * or it can happen that the number num is not in the phone book, in that case return: "Error => Not found: num"
  */
 #include <string>
+#include <regex>
+#include <sstream>
 
 class PhoneDir {
 public:
-    static std::string phone(const std::string& orgdr, std::string num);
+    static std::string phone(const std::string& orgdr, std::string num) {
+        std::regex phonePattern("\\+\\d{1,2}-\\d{3}-\\d{3}-\\d{4}");
+        std::regex namePattern("<[^>]+>");
+        std::istringstream iss(orgdr);
+        std::string line;
+        std::string result;
+        int count = 0;
+
+        while (getline(iss, line)) {
+            std::smatch phoneMatch, nameMatch;
+            if (std::regex_search(line, phoneMatch, phonePattern)) {
+                std::string foundPhone = phoneMatch.str();
+                // Normalize phone format to match 'num'
+                std::string normalizedPhone = foundPhone.substr(1); // Removes the leading '+'
+
+                if (normalizedPhone == num) {
+                    if (++count > 1) {
+                        return "Error => Too many people: " + num;
+                    }
+
+                    std::regex_search(line, nameMatch, namePattern);
+                    std::string name = nameMatch.str().substr(1, nameMatch.str().size() - 2); // Remove < and >
+
+                    // Clean up the address by removing the phone number and name
+                    std::string address = std::regex_replace(line, phonePattern, "");
+                    address = std::regex_replace(address, namePattern, "");
+                    address = std::regex_replace(address, std::regex("[^\\w\\s,.-]"), " ");
+                    address = std::regex_replace(address, std::regex("_"), " "); // Replace underscores with spaces
+                    address = std::regex_replace(address, std::regex("\\b,\\s+(?![0-9]|\\s*$)"), " "); // Remove commas that are not preceding numbers
+                    address = std::regex_replace(address, std::regex("\\s+"), " "); // Replace multiple spaces with one
+                    address = std::regex_replace(address, std::regex("^\\s+|\\s+$"), ""); // Trim spaces from start and end
+
+                    result = "Phone => " + num + ", Name => " + name + ", Address => " + address;
+                }
+            }
+        }
+
+        if (count == 0) {
+            return "Error => Not found: " + num;
+        }
+
+        return result;
+    }
 };

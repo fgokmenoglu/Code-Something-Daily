@@ -33,3 +33,16 @@ fn meeting(s: &str) -> String {
         .map(|(last_name, first_name)| format!("({}, {})", last_name, first_name))
         .collect()
 }
+
+// ALTERNATIVE
+use itertools::Itertools;
+
+pub fn meeting(s: &str) -> String {
+    s.to_uppercase()
+        .split(';')
+        .flat_map(|person_string| person_string.split(':'))
+        .tuples()
+        .map(|(first_name, last_name)| format!("({}, {})", last_name, first_name))
+        .sorted()
+        .collect()
+}

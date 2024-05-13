@@ -31,3 +31,11 @@ bool shared_bits(long a, long b) {
     
     return false;
 }
+
+// ALTERNATIVE
+#include <bitset>
+bool shared_bits(long a, long b){
+  std::bitset<32> c;
+  c = a & b;
+  return c.count()>=2 ;
+}

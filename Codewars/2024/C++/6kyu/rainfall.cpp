@@ -28,9 +28,79 @@
  * Don't truncate or round: the tests will pass if abs(your_result - test_result) <= 1e-2 or abs((your_result - test_result) / test_result) <= 1e-6 depending on the language.
  */
 #include <string>
+#include <sstream>
+#include <vector>
+#include <iomanip>
+#include <numeric>
+#include <cmath>
 
 class Rainfall {
 public:
-    static double mean(std::string town, const std::string &strng);
-    static double variance(std::string town, const std::string &strng);
+    // Utility function to split a string by a delimiter
+    static std::vector<std::string> split(const std::string &s, char delimiter) {
+        std::vector<std::string> tokens;
+        std::string token;
+        std::istringstream tokenStream(s);
+        while (std::getline(tokenStream, token, delimiter)) {
+            tokens.push_back(token);
+        }
+        return tokens;
+    }
+
+    // Function to extract rainfall data for a given town
+    static std::vector<double> getRainfallData(const std::string &town, const std::string &strng) {
+        std::vector<double> rainfallData;
+        std::vector<std::string> lines = split(strng, '\n');
+        
+        for (const std::string& line : lines) {
+            std::size_t pos = line.find(':');
+            if (pos != std::string::npos && line.substr(0, pos) == town) {
+                std::vector<std::string> data = split(line.substr(pos + 1), ',');
+                for (size_t i = 0; i < data.size(); ++i) {
+                    std::vector<std::string> monthData = split(data[i], ' ');
+                    if (monthData.size() == 2) {
+                        rainfallData.push_back(std::stod(monthData[1]));
+                    }
+                }
+                break;
+            }
+        }
+        return rainfallData;
+    }
+
+    // Function to calculate the mean of rainfall data
+    static double mean(const std::string &town, const std::string &strng) {
+        std::vector<double> rainfallData = getRainfallData(town, strng);
+        if (rainfallData.empty()) return -1.0;
+        
+        double sum = std::accumulate(rainfallData.begin(), rainfallData.end(), 0.0);
+        double meanValue = sum / rainfallData.size();
+
+        std::cerr << "Debug Info for Town: " << town << std::endl;
+        std::cerr << "Extracted Data: ";
+        for (auto val : rainfallData) {
+            std::cerr << val << " ";
+        }
+        std::cerr << std::endl;
+        std::cerr << "Calculated Mean: " << meanValue << std::endl;
+
+        return meanValue;
+    }
+
+    // Function to calculate the variance of rainfall data
+    static double variance(const std::string &town, const std::string &strng) {
+        std::vector<double> rainfallData = getRainfallData(town, strng);
+        if (rainfallData.empty()) return -1.0;
+
+        double m = mean(town, strng);
+        double sumSq = 0.0;
+        for (double value : rainfallData) {
+            sumSq += (value - m) * (value - m);
+        }
+        double varianceValue = sumSq / rainfallData.size();
+
+        std::cerr << "Calculated Variance: " << varianceValue << std::endl;
+
+        return varianceValue;
+    }
 };

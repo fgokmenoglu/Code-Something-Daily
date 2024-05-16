@@ -6,6 +6,12 @@ struct Student {
     int ID;
     std::string name;
     double GPA;
+
+    // Default constructor
+    Student() : ID(0), name(""), GPA(0.0) {}
+    
+    // Parameterized constructor
+    Student(int id, std::string n, double gpa) : ID(id), name(n), GPA(gpa) {}
 };
 
 Student* createStudentRecords(int num_students) {

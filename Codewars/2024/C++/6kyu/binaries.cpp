@@ -29,12 +29,52 @@
  * decode("1010111111011011011111001100") -> "0011121314"
  */
 #include <string>
+#include <cmath>
 
 namespace coding {
     std::string code(const std::string &strng) {
-        // your code
+        std::string result;
+
+        for (char c : strng) {
+            int d = c - '0';
+            int k = d == 0 ? 1 : std::ceil(std::log2(d + 1));
+            // Prefix with k-1 zeros and one '1'
+            result.append(k - 1, '0');
+            result.push_back('1');
+
+            // Binary representation of d
+            for (int i = k - 1; i >= 0; --i) {
+                result.push_back(((d >> i) & 1) ? '1' : '0');
+            }
+        }
+
+        return result;
     }
+
     std::string decode(const std::string &str) {
-        // your code
+        std::string result;
+        size_t i = 0;
+
+        while (i < str.size()) {
+            // Read the prefix to determine k
+            int k = 1; // We start with k = 1 because we must count the '1' in the prefix
+            while (i < str.size() && str[i] == '0') {
+                k++;
+                i++;
+            }
+            // Skip the '1' in the prefix
+            i++;
+
+            // Read the next k bits to get the binary representation of the digit
+            int d = 0;
+            for (int j = 0; j < k; j++) {
+                d = (d << 1) | (str[i] - '0');
+                i++;
+            }
+            result.push_back('0' + d);
+        }
+
+        return result;
     }
 }
+

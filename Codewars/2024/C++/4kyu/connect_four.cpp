@@ -22,7 +22,66 @@
  */
 #include <string>
 #include <vector>
+#include <array>
+#include <iostream>
 
 std::string who_is_winner(std::vector<std::string> pieces_position_list) {
-  // your code here
+    // Initialize the Connect Four board
+    std::array<std::array<std::string, 7>, 6> board{};
+    
+    // Keeps track of the next available row in each column
+    std::array<int, 7> column_heights = {0, 0, 0, 0, 0, 0, 0};
+    
+    // Convert column character to index
+    auto column_index = [](char col) -> int {
+        return col - 'A';
+    };
+    
+    // Directions for checking four in a row (right, down, down-right, down-left)
+    const std::vector<std::pair<int, int>> directions = {{0, 1}, {1, 0}, {1, 1}, {1, -1}};
+    
+    // Check if there is a connect four from the current position
+    auto check_winner = [&](int row, int col, const std::string& color) -> bool {
+        for (const auto& [dr, dc] : directions) {
+            int count = 1;
+            // Check in the positive direction
+            for (int k = 1; k < 4; ++k) {
+                int nr = row + k * dr, nc = col + k * dc;
+                if (nr >= 0 && nr < 6 && nc >= 0 && nc < 7 && board[nr][nc] == color) {
+                    ++count;
+                } else {
+                    break;
+                }
+            }
+            // Check in the negative direction
+            for (int k = 1; k < 4; ++k) {
+                int nr = row - k * dr, nc = col - k * dc;
+                if (nr >= 0 && nr < 6 && nc >= 0 && nc < 7 && board[nr][nc] == color) {
+                    ++count;
+                } else {
+                    break;
+                }
+            }
+            // If we have four in a row
+            if (count >= 4) {
+                return true;
+            }
+        }
+        return false;
+    };
+    
+    // Process each move
+    for (const auto& move : pieces_position_list) {
+        int col = column_index(move[0]);
+        std::string color = move.substr(2);
+        
+        int row = column_heights[col]++;
+        board[row][col] = color;
+        
+        if (check_winner(row, col, color)) {
+            return color;
+        }
+    }
+    
+    return "Draw";
 }

@@ -1,3 +1,14 @@
+/*
+ * Given an array/list [] of integers, 
+ * find the maximum difference between the  
+ * successive elements in its sorted form. 
+ *
+ * Notes
+ * Array/list size is at least 3 .
+ * Array/list's numbers Will be mixture of positives and negatives also zeros_
+ * Repetition of numbers in the array/list could occur.
+ * The Maximum Gap is computed Regardless the sign.
+ */
 
 #include <vector>
 #include <algorithm>

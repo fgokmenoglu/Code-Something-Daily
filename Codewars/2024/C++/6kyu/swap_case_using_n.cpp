@@ -23,26 +23,38 @@
  */
 #include <string>
 #include <bitset>
+#include <iostream>
 
 std::string swap(std::string s, int n) {
-    std::string result = s;
-    std::bitset<32> bits(n); // We use bitset to handle binary representation of n
-    int bit_length = bits.size();
-    int bit_index = 0;
-    int alphabetic_index = 0; // to keep track of alphabetic characters only
-
-    for (char &c : result) {
+    // Convert the integer n to a binary string
+    std::string binary = std::bitset<32>(n).to_string();
+    
+    // Remove leading zeros for easier handling
+    size_t firstOne = binary.find('1');
+    if (firstOne != std::string::npos) {
+        binary = binary.substr(firstOne);
+    } else {
+        // If there are no '1's, the binary string is effectively "0"
+        binary = "0";
+    }
+    
+    int bitIndex = 0;
+    int bitLength = binary.length();
+    
+    for (char& c : s) {
         if (isalpha(c)) {
-            if (bits[alphabetic_index % bit_length]) { // Check if the current bit is 1
+            // Check if the current bit is 1 to swap the case
+            if (binary[bitIndex] == '1') {
                 if (islower(c)) {
                     c = toupper(c);
-                } else if (isupper(c)) {
+                } else {
                     c = tolower(c);
                 }
             }
-            alphabetic_index++;
+            // Move to the next bit
+            bitIndex = (bitIndex + 1) % bitLength;
         }
     }
-
-    return result;
+    
+    return s;
 }

@@ -21,3 +21,28 @@
  * swap("", 11345)                   -->  ""
  * swap("the lord of the rings", 0)  -->  "the lord of the rings"
  */
+#include <string>
+#include <bitset>
+
+std::string swap(std::string s, int n) {
+    std::string result = s;
+    std::bitset<32> bits(n); // We use bitset to handle binary representation of n
+    int bit_length = bits.size();
+    int bit_index = 0;
+    int alphabetic_index = 0; // to keep track of alphabetic characters only
+
+    for (char &c : result) {
+        if (isalpha(c)) {
+            if (bits[alphabetic_index % bit_length]) { // Check if the current bit is 1
+                if (islower(c)) {
+                    c = toupper(c);
+                } else if (isupper(c)) {
+                    c = tolower(c);
+                }
+            }
+            alphabetic_index++;
+        }
+    }
+
+    return result;
+}

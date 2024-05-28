@@ -15,3 +15,11 @@
  * enum { Even, Odd, Either };
  * is Preloaded.
  */
+int Odd_or_Even(unsigned int n) { 
+  return n % 2 == 1 ? Either : (n / 2) % 2 == 0 ? Even : Odd;
+}
+
+// ALTERNATIVE
+int Odd_or_Even(unsigned int n) { 
+  return n & 1 ? Either : n >> 1 & 1;
+}

@@ -11,5 +11,9 @@
  * 170  -->  1 (true) because all of the odd bits are 1 (170 = 0b10101010)
  */
 fn any_odd(x: u32) -> u8 {
-    
+    if x & 0xAAAAAAAA != 0 {
+        1
+    } else {
+        0
+    }
 }

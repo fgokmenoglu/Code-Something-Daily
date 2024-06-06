@@ -23,3 +23,15 @@ char* capitalize_vowels(char* string) {
     
     return string;
 }
+
+// ALTERNATIVE
+#include <string.h>
+#include <ctype.h>
+
+char *capitalize_vowels (char *string)
+{
+  for (char *p = string; *p; p++)
+    if (strchr("aeiou", *p)) *p = toupper(*p);
+  
+	return string;
+}

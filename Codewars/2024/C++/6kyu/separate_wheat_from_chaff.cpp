@@ -36,7 +36,30 @@
  * Only O(N) Complexity Solutions Will pass .
  */
 #include <vector>
+#include <algorithm>
 
 std::vector<long long int> wheatFromChaff(std::vector<long long int> values) {
+    int left = 0;
+    int right = values.size() - 1;
 
+    while (left < right) {
+        // Move left pointer to the right as long as it points to a negative number
+        while (left < right && values[left] < 0) {
+            ++left;
+        }
+
+        // Move right pointer to the left as long as it points to a positive number
+        while (left < right && values[right] > 0) {
+            --right;
+        }
+
+        // If a misplaced positive number is found at left and a misplaced negative number is found at right, swap them
+        if (left < right) {
+            std::swap(values[left], values[right]);
+            ++left;
+            --right;
+        }
+    }
+
+    return values;
 }

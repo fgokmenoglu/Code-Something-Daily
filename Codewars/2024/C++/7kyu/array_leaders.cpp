@@ -26,3 +26,28 @@
  * 5 is greater than the sum all the elements to its right side
  * Note : The last element 2 is greater than the sum of its right elements (abstract zero). 
  */
+#include <vector>
+
+using namespace std;
+
+vector<int> arrayLeaders(const vector<int>& numbers) {
+    vector<int> leaders;
+    int size = numbers.size();
+    int rightSum = 0;
+    
+    // Iterate from right to left
+    for (int i = size - 1; i >= 0; i--) {
+        // If the current number is greater than the sum of elements to its right
+        if (numbers[i] > rightSum) {
+            leaders.push_back(numbers[i]);
+        }
+        
+        // Add the current number to the right sum for the next iteration
+        rightSum += numbers[i];
+    }
+    
+    // Reverse the leaders vector to maintain the original order
+    reverse(leaders.begin(), leaders.end());
+    
+    return leaders;
+}

@@ -44,18 +44,15 @@ msv remove_duplicate_ids(const msv &obj) {
 
     // Process each key
     for (const auto &key : keys) {
-        std::unordered_set<char> local_chars;
         std::vector<char> unique_chars;
 
         for (char c : obj.at(key)) {
-            if (global_chars.find(c) == global_chars.end() && local_chars.find(c) == local_chars.end()) {
+            if (global_chars.find(c) == global_chars.end()) {
                 unique_chars.push_back(c);
                 global_chars.insert(c);
-                local_chars.insert(c);
             }
         }
 
-        // Always add the key to the result, even if the vector is empty
         result[key] = unique_chars;
     }
 

@@ -28,16 +28,54 @@
  * oper_array(max, a, a[0]) => [18, 69, 69, 69, 69, 69]
  */
 #include <vector>
+#include <algorithm>
+#include <cstdlib>
 
 class Operarray {
 public:
-    static long long gcdi(long long x, long long y);
-    static long long lcmu(long long a, long long b);
-    static long long som(long long a, long long b);
-    static long long maxi(long long a, long long b);
-    static long long mini(long long a, long long b);
-    // your high order function oper
-    static long long oper(..., long long a, long long b);
-    // your high order function operArray
-    static std::vector<long long> operArray(..., std::vector<long long> &arr, long long init);
+    static long long gcdi(long long x, long long y) {
+        x = std::abs(x);
+        y = std::abs(y);
+        while (y != 0) {
+            long long temp = y;
+            y = x % y;
+            x = temp;
+        }
+        return x;
+    }
+
+    static long long lcmu(long long a, long long b) {
+        return std::abs(a * b) / gcdi(a, b);
+    }
+
+    static long long som(long long a, long long b) {
+        return a + b;
+    }
+
+    static long long maxi(long long a, long long b) {
+        return std::max(a, b);
+    }
+
+    static long long mini(long long a, long long b) {
+        return std::min(a, b);
+    }
+
+    // High order function oper
+    static long long oper(long long (*fct)(long long, long long), long long a, long long b) {
+        return fct(a, b);
+    }
+
+    // High order function operArray
+    static std::vector<long long> operArray(long long (*fct)(long long, long long), std::vector<long long> &arr, long long init) {
+        std::vector<long long> result;
+        result.reserve(arr.size());
+
+        long long current = init;
+        for (long long num : arr) {
+            current = oper(fct, current, num);
+            result.push_back(current);
+        }
+
+        return result;
+    }
 };

@@ -8,7 +8,8 @@
  *     contains only alphanumeric characters (no special characters)
  * 
  * Return the random password as a string.
- * Note: "randomness" is checked by counting the characters used in the generated passwords - all characters should have less than 50% occurance. Based on extensive tests, the normal rate is around 35%.
+ * Note: "randomness" is checked by counting the characters used in the generated passwords - 
+ * all characters should have less than 50% occurance. Based on extensive tests, the normal rate is around 35%.
  */
 #include <string>
 #include <random>

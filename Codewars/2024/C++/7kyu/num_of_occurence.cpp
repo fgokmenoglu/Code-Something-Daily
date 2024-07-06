@@ -4,7 +4,8 @@
  *
  * Examples
  * 664444309 is a dd number, as it contains 4 occurences of the number 4
- * 30313, 122 are dd numbers as they respectively contain 3 occurences of the number 3, and (1 occurence of the number 1 AND 2 occurences of the number 2)
+ * 30313, 122 are dd numbers as they respectively contain 3 occurences of the number 3, 
+ * and (1 occurence of the number 1 AND 2 occurences of the number 2)
  * 123109, 0, 56542 are not dd numbers
  * 
  * Task

@@ -72,3 +72,36 @@ std::string communicationModule(std::string packet) {
 
     return response;
 }
+
+// ALTERNATIVE
+include <string>
+#include <functional>
+#include <map>
+#include <sstream>
+#include <iomanip>
+
+using namespace std;
+
+map<string, function<int(int, int)>> funcs = {
+  make_pair("0F12", [](int n1, int n2) { return n1 + n2; }),
+  make_pair("B7A2", [](int n1, int n2) { return n1 - n2; }),
+  make_pair("C3D9", [](int n1, int n2) { return n1 * n2; }),
+};
+
+string communicationModule(string packet)
+{
+  int n1 = stoi(packet.substr(8, 4));
+  int n2 = stoi(packet.substr(12, 4));
+  int num = funcs[packet.substr(4, 4)](n1, n2);
+  
+  if (num < 0) num = 0;
+  if (num > 9999) num = 9999;
+  
+  stringstream stream;
+  stream << setfill('0') << setw(4) << num;
+  
+  packet.replace(4, 12, "FFFF00000000");
+  packet.replace(8, 4, stream.str());
+  
+  return packet;
+}

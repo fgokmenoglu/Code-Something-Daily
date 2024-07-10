@@ -32,3 +32,12 @@ std::string pattern(int n) {
     
     return pattern;
 }
+
+// ALTERNATIVE
+std::string pattern( int n ) {
+  std::string s;
+  for ( int i{ 1 }; i < n; ++i, s += 10 )
+    for ( int j{ i }; j <= n; ++j )
+      s += std::to_string( j );
+  return n < 1 ? s : s + std::to_string( n );
+}

@@ -35,14 +35,40 @@
  *  Decode("Hmdr nge brres","regulaminowy")  // => Hide our beers
  */
 #include <string>
+#include <unordered_map>
+#include <cctype>
+
 using namespace std;
 
-string encode (string str, string key)
-{
-    return "noidea";
+unordered_map<char, char> createSubstitutionMap(const string& key) {
+    unordered_map<char, char> substitutionMap;
+    for (size_t i = 0; i < key.length(); i += 2) {
+        char a = key[i];
+        char b = key[i + 1];
+        substitutionMap[a] = b;
+        substitutionMap[b] = a;
+        substitutionMap[toupper(a)] = toupper(b);
+        substitutionMap[toupper(b)] = toupper(a);
+    }
+    return substitutionMap;
 }
 
-string decode (string str, string key)
-{
-    return "noidea";
+string encode(string str, string key) {
+    auto substitutionMap = createSubstitutionMap(key);
+    string result;
+    
+    for (char c : str) {
+        if (substitutionMap.find(c) != substitutionMap.end()) {
+            result += substitutionMap[c];
+        } else {
+            result += c;
+        }
+    }
+    
+    return result;
+}
+
+string decode(string str, string key) {
+    // For this cipher, encoding and decoding are the same process
+    return encode(str, key);
 }

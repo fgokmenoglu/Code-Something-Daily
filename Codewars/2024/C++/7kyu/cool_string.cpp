@@ -44,3 +44,11 @@ bool cool_string(const std::string& s) {
 
     return has_letter;  // String must contain at least one letter to be cool
 }
+
+// ALTERNATIVE
+#include <regex>
+#include <string>
+
+bool cool_string(const std::string& s) {
+  return !(regex_search(s, std::regex("[^A-Za-z]|[A-Z]{2,}|[a-z]{2,}"))); 
+}

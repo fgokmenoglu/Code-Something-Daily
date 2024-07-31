@@ -44,3 +44,24 @@ using namespace std;
 int find_even_index (const vector <int> numbers) {
   return -1;
 }
+#include <vector>
+#include <numeric>
+
+using namespace std;
+
+int find_even_index(const vector<int>& numbers) {
+    int total_sum = accumulate(numbers.begin(), numbers.end(), 0);
+    int left_sum = 0;
+
+    for (int i = 0; i < numbers.size(); ++i) {
+        int right_sum = total_sum - left_sum - numbers[i];
+        
+        if (left_sum == right_sum) {
+            return i;
+        }
+        
+        left_sum += numbers[i];
+    }
+
+    return -1;
+}

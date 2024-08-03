@@ -1,9 +1,6 @@
-/* Task Description:
- * 
- * DESCRIPTION:
- * 
+/* 
+ * Task Description:
  * This is the first part of this kata series. Second part is here.
- * 
  * We want to create a simple interpreter of assembler which will support the following instructions:
  * 
  * mov x y - copies y (either a constant value or the content of a register) into register x
@@ -25,11 +22,9 @@
  * so you don't need to worry about uninitialized registers.
  * 
  * Example
- * 
  * ["mov a 5"; "inc a"; "dec a"; "dec a"; "jnz a -1"; "inc a"]
  * 
  * visualized:
- * 
  * mov a 5
  * inc a
  * dec a
@@ -38,7 +33,6 @@
  * inc a
  * 
  * The above code will:
- * 
  * set register a to 5,
  * increase its value by 1,
  * decrease its value by 2,
@@ -46,7 +40,6 @@
  * and then increase its value by 1, leaving register a at 1
  * 
  * So, the function should return:
- * 
  * Map("a"->1)
  */
 

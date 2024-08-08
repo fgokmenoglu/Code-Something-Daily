@@ -13,7 +13,6 @@
 #include <string>
 #include <cctype>
 #include <cmath>
-#include <stdexcept>
 
 std::string calculateString(std::string calcIt) {
     std::string num1, num2;
@@ -56,8 +55,6 @@ std::string calculateString(std::string calcIt) {
             }
             result = n1 / n2;
             break;
-        default:
-            throw std::runtime_error("Invalid operator");
     }
 
     // Round to nearest integer and convert to string

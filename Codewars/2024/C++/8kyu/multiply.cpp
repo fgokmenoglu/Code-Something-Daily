@@ -6,3 +6,5 @@ int multiply(int a, int b)
 {
     a * b;
 }
+
+// return is missing
